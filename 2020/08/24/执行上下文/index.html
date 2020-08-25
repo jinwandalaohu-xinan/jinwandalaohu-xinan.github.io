@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/blog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/blog/css/main.css">
+
+
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jinwandadashizi.gitee.io","root":"/blog/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="什么是执行上下文？什么又是作用域？this指向？函数进栈执行&#x2F;出栈销毁？简单归纳总结一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS笔记————执行上下文">
+<meta property="og:url" content="http://jinwandadashizi.gitee.io/blog/2020/08/24/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/index.html">
+<meta property="og:site_name" content="飘渺峰">
+<meta property="og:description" content="什么是执行上下文？什么又是作用域？this指向？函数进栈执行&#x2F;出栈销毁？简单归纳总结一下">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-24T10:49:37.000Z">
+<meta property="article:modified_time" content="2020-08-25T10:29:28.714Z">
+<meta property="article:author" content="梅师叔">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://jinwandadashizi.gitee.io/blog/2020/08/24/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JS笔记————执行上下文 | 飘渺峰</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/blog/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">飘渺峰</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/blog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://jinwandadashizi.gitee.io/blog/2020/08/24/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
+      <meta itemprop="name" content="梅师叔">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飘渺峰">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS笔记————执行上下文
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-24 18:49:37" itemprop="dateCreated datePublished" datetime="2020-08-24T18:49:37+08:00">2020-08-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-25 18:29:28" itemprop="dateModified" datetime="2020-08-25T18:29:28+08:00">2020-08-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/JS%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">JS基础</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>什么是执行上下文？什么又是作用域？this指向？函数进栈执行/出栈销毁？<br>简单归纳总结一下</p>
+<a id="more"></a>
+<h2 id="一、执行上下"><a href="#一、执行上下" class="headerlink" title="一、执行上下"></a>一、执行上下</h2><ol>
+<li><p><strong>执行上下文概念</strong></p>
+<p>什么是执行上下文？</p>
+<p>执行上下文(Execution Context)：函数执行前进行的准备工作（也称执行上下文环境）。</p>
+<p>运行 JavaScript 代码的时候，当代码执行进入一个环境时，就会为该环境创建一个执行上下文，它会在运行代码前做一些准备工作，如<strong>确定作用域</strong>，<strong>创建局部变量</strong>对象等。</p>
+<blockquote>
+<p><strong>JavaScript中执行上下文大致分为两种</strong></p>
+</blockquote>
+<ul>
+<li>全局执行上下文</li>
+<li>函数执行上下文</li>
+</ul>
+<p>JavaScript 运行时首先会进入全局环境，对应会生成全局上下文。程序代码中基本都会存在函数，那么调用函数，就会进入函数执行环境，对应就会生成该函数的执行上下文。</p>
+<p>程序代码中会有很多函数的调用，哪js是怎么管理这些执行上下文呢？</p>
+<blockquote>
+<p><strong>JavaScript管理执行上下文</strong></p>
+</blockquote>
+<p>JavaScript 是单线程。所以同个时间段只能做一件任务，完成之后才可以继续下一个任务。既然是这样，那么就必须要有一个排队机制。在 JavaScript 中，通过栈的存取方式来管理执行上下文，我们可称其为执行栈，或函数调用栈（Call Stack）。</p>
+<p>首先了解下<strong>栈数据结构</strong>：</p>
+<p>栈遵循”先进后出，后进先出”的规则，或称LIFO (“Last In First Out”) 规则。</p>
+<p>其特点：</p>
+<ol>
+<li>后进先出，先进后出</li>
+<li>出口在顶部，且仅有一个</li>
+</ol>
+<p><strong>再来看——执行栈（函数调用栈）</strong>：</p>
+<p>程序执行进入一个执行环境时，它的执行上下文就会被创建，并被推入执行栈中（入栈）。程序执行完成时，它的执行上下文就会被销毁，并从栈顶被推出（出栈），控制权交由下一个执行上下文。而在JS中最先进栈的是全局执行上下文，结合栈的特性，那么<strong>栈底的永远是全局环境的执行上下文</strong>，而处于”<strong>栈顶的是当前正在执行函数的执行上下文</strong>“，当函数调用完成后，它就会从栈顶被推出（出栈进行销毁）</p>
+<p>在整个页面中，全局环境只有一个，对应的全局执行上下文也只有一个，只有当页面被关闭之后它才会从执行栈中被推出，否则一直存在于栈底。至于函数上下文的个数是没有任何限制的，每到调用执行一个函数时，引擎就会自动新建出一个函数上下文。</p>
+</li>
+</ol>
+<ol start="2">
+<li><p><strong>执行上下文的生命周期</strong></p>
+<ul>
+<li><p><strong>建立阶段</strong></p>
+<p>1.创建变量对象（vo）</p>
+<ul>
+<li>函数环境会初始化创建 Arguments 对象，形式参数（并赋值）</li>
+<li>普通函数声明（并赋值）</li>
+<li>局部变量声明，函数表达式声明（未赋值）</li>
+</ul>
+<p>2.初始化作用域链</p>
+<p>3.确定 this 指向（ this 由调用者确定）</p>
+<p>4.确定作用域（词法环境决定，哪里声明定义，就在哪里确定）</p>
+</li>
+<li><p><strong>执行阶段</strong></p>
+<p>1.变量对象赋值</p>
+<ul>
+<li>变量赋值</li>
+<li>函数表达式赋值</li>
+</ul>
+<p>2.调用函数</p>
+<p>3.顺序执行其它代码</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、作用域"><a href="#二、作用域" class="headerlink" title="二、作用域"></a>二、作用域</h2><p><strong>定义</strong>：简单来讲就是变量的作用范围，也就是在那个范围下可以访问到这个变量。</p>
+<p><strong>作用域链：</strong>所谓作用域链，就是内部上下文所有变量对象（包括父变量对象）的列表。此链主要是用于变量查询。当在遇到<strong>自由变量</strong>（<em>当前作用域未声明</em>）时，就会往上级作用域查找，没有就会一直找到全局，</p>
+<p>如果是<strong>自由变量的赋值运算</strong>，那么就相当于“<code>window.a</code>”，在全局对象上加了个属性。</p>
+<blockquote>
+<p><strong>函数声明时</strong></p>
+</blockquote>
+<p>此时就确定了，它的作用域，也就是声明它时所在的作用域。所以<code>[[scope]]</code>是静态的</p>
+<blockquote>
+<p><strong>函数调用时</strong></p>
+</blockquote>
+<p>而在此时才确定了作用域链，函数调用时就会创建一个新的执行上下文（私有的），也就有了个新的作用域，此时作用域链形成：</p>
+<p><code>作用域链（ScopeChain） = AO + [[scope]]</code>，简单来说就自己的作用域加上父级对象的作用域列表，在查找变量时，先看自己的上下文又没没有，没有则根据作用域链继续查找</p>
+<p>最后总结一下：<strong>函数的<code>[[scope]]</code>属性是在函数创建时就确定了，而变量对象则是在函数激活时，也就是说调用函数时才会确定</strong>。</p>
+<h2 id="三、this的指向"><a href="#三、this的指向" class="headerlink" title="三、this的指向"></a>三、this的指向</h2><ol>
+<li><p><strong>this定义</strong></p>
+<p>this 是执行上下文中的一个属性，this 与上下文中可执行代码的类型有直接关系，<strong>this 值在进入上下文时确定，并且在上下文运行期间永久不变</strong>。</p>
+<p>this大概分为两种全局下的this，函数中的this</p>
+</li>
+<li><p><strong>全局下的this</strong></p>
+<p>在全局下很简单，this 始终是全局对象本身，这样就有可能间接的引用到它了。<code>this.a 相当于 window.a</code></p>
+</li>
+<li><p><strong>各种情况中的this</strong></p>
+<blockquote>
+<p><strong>普通函数中的this</strong></p>
+</blockquote>
+<p>this指向规则：对象中就存在一个this对象，它的指向是动态的，在<strong>被调用是才确定指向</strong>，也就是<strong>谁调用指向谁</strong>，</p>
+<p><strong>注意的是</strong>：以普通函数的方式调用的时候，无论嵌套多少层函数，this 都始终指向<strong>全局对象</strong></p>
+<blockquote>
+<p><strong>箭头函数中的this</strong></p>
+</blockquote>
+<p>箭头函数，有固化this的作用，<strong>它的this指向声明此函数时的作用域的this指向谁就是谁</strong>（箭头内部没有this，只用用外部的this指向了），为了防止this的指向改变，就可以用箭头函数</p>
+<blockquote>
+<p><strong>在对象中使用this</strong></p>
+</blockquote>
+<p>如果是在对象里面使用 this，则指向当前对象。this 可以用在方法内，获取对对象属性的访问，</p>
+<blockquote>
+<p><strong>在事件绑定中的this</strong></p>
+</blockquote>
+<p>关于这一种 this 的指向，我们在学习事件章节时也接触过。DOM 元素绑定事件时，事件处理函数里面的 this 指向绑定了事件的元素。这个地方一定要注意它和 target 的区别，target 是指向触发事件的元素。</p>
+</li>
+<li><p><strong>改变this的指向</strong></p>
+<p>this的指向是可以改变的，通过<code>call()``apply()</code>和<code>bind()</code>改变this的指向，这都是针对普通函数而言</p>
+<blockquote>
+<p><strong>call方法和apply方法</strong></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Test = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = <span class="string">&quot;JavaScript&quot;</span>;</span><br><span class="line">    <span class="built_in">this</span>.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`这是<span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> test = <span class="keyword">new</span> Test();</span><br><span class="line">test.say(); <span class="comment">// 这是JavaScript</span></span><br><span class="line"><span class="keyword">const</span> a = &#123;</span><br><span class="line">    name: <span class="string">&quot;HTML&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//把test的say方法交给了a对象去掉用，就是说改变了调用者</span></span><br><span class="line">test.say.call(a); <span class="comment">// 这是HTML</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//func.call(func1,var1,var2,var3)</span></span><br><span class="line"><span class="comment">//func.apply(func1,[var1,var2,var3])</span></span><br></pre></td></tr></table></figure>
+
+<p>小结：call，apply都是改变了调用者，它区别是传参的形式不同</p>
+<blockquote>
+<p><strong>bind方法绑定 this 指向</strong></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//fun.bind(thisArg[, arg1[, arg2[, ...]]])</span></span><br><span class="line"><span class="comment">//thisArg：当绑定函数被调用时，该参数会作为原函数运行时的 this 指向。</span></span><br><span class="line"><span class="comment">//arg1,arg2,...：当绑定函数被调用时，这些参数将置于实参之前传递给被绑定的方法。</span></span><br></pre></td></tr></table></figure>
+
+<p>bind方法绑定this后并未执行函数，而是返回了一个函数（<em>被绑定了this的那个方法</em>），call华人apply则是立即执行了，bind则需要手动调用。</p>
+</li>
+</ol>
+<h2 id="四、闭包"><a href="#四、闭包" class="headerlink" title="四、闭包"></a>四、闭包</h2><p>一般函数执行完后，就会出栈进行销毁，但也有特殊情况，那就是闭包；闭包时，函数的变量对象不会销毁，就延长了他的作用范围。</p>
+<p><strong>怎么形成闭包？</strong></p>
+<p>原理就是不让垃圾回收机制，回收，怎么才能让引擎知道，这个不回收呢？我们在返回值上做文章，返回一个对象，让这个作用域外的一个变量去引用它，这时这个对象是在函数作用域中，出栈销毁时，发现还有人在引用它，那引擎就不会销毁，这个上下文的变量对象，就形成了闭包。</p>
+<p>闭包不会销毁，那必然就会消耗了内存，注意使用</p>
+<p>而在些单列设计模式中，就是用闭包，来避免变量污染的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fnMoudel = (<span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//执行代码</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2020/08/24/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2020/08/25/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="next" title="JS笔记————面向对象">
+      JS笔记————面向对象 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B"><span class="nav-number">1.</span> <span class="nav-text">一、执行上下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">2.</span> <span class="nav-text">二、作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81this%E7%9A%84%E6%8C%87%E5%90%91"><span class="nav-number">3.</span> <span class="nav-text">三、this的指向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%97%AD%E5%8C%85"><span class="nav-number">4.</span> <span class="nav-text">四、闭包</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">梅师叔</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/blog/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/blog/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">梅师叔</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/blog/lib/anime.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.min.js"></script>
+  <script src="/blog/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/motion.js"></script>
+
+
+<script src="/blog/js/schemes/pisces.js"></script>
+
+
+<script src="/blog/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/blog/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

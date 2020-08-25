@@ -18,4 +18,260 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>JS笔记————执行上下文</title>
+    <url>/blog/2020/08/24/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/</url>
+    <content><![CDATA[<p>什么是执行上下文？什么又是作用域？this指向？函数进栈执行/出栈销毁？<br>简单归纳总结一下</p>
+<a id="more"></a>
+<h2 id="一、执行上下"><a href="#一、执行上下" class="headerlink" title="一、执行上下"></a>一、执行上下</h2><ol>
+<li><p><strong>执行上下文概念</strong></p>
+<p>什么是执行上下文？</p>
+<p>执行上下文(Execution Context)：函数执行前进行的准备工作（也称执行上下文环境）。</p>
+<p>运行 JavaScript 代码的时候，当代码执行进入一个环境时，就会为该环境创建一个执行上下文，它会在运行代码前做一些准备工作，如<strong>确定作用域</strong>，<strong>创建局部变量</strong>对象等。</p>
+<blockquote>
+<p><strong>JavaScript中执行上下文大致分为两种</strong></p>
+</blockquote>
+<ul>
+<li>全局执行上下文</li>
+<li>函数执行上下文</li>
+</ul>
+<p>JavaScript 运行时首先会进入全局环境，对应会生成全局上下文。程序代码中基本都会存在函数，那么调用函数，就会进入函数执行环境，对应就会生成该函数的执行上下文。</p>
+<p>程序代码中会有很多函数的调用，哪js是怎么管理这些执行上下文呢？</p>
+<blockquote>
+<p><strong>JavaScript管理执行上下文</strong></p>
+</blockquote>
+<p>JavaScript 是单线程。所以同个时间段只能做一件任务，完成之后才可以继续下一个任务。既然是这样，那么就必须要有一个排队机制。在 JavaScript 中，通过栈的存取方式来管理执行上下文，我们可称其为执行栈，或函数调用栈（Call Stack）。</p>
+<p>首先了解下<strong>栈数据结构</strong>：</p>
+<p>栈遵循”先进后出，后进先出”的规则，或称LIFO (“Last In First Out”) 规则。</p>
+<p>其特点：</p>
+<ol>
+<li>后进先出，先进后出</li>
+<li>出口在顶部，且仅有一个</li>
+</ol>
+<p><strong>再来看——执行栈（函数调用栈）</strong>：</p>
+<p>程序执行进入一个执行环境时，它的执行上下文就会被创建，并被推入执行栈中（入栈）。程序执行完成时，它的执行上下文就会被销毁，并从栈顶被推出（出栈），控制权交由下一个执行上下文。而在JS中最先进栈的是全局执行上下文，结合栈的特性，那么<strong>栈底的永远是全局环境的执行上下文</strong>，而处于”<strong>栈顶的是当前正在执行函数的执行上下文</strong>“，当函数调用完成后，它就会从栈顶被推出（出栈进行销毁）</p>
+<p>在整个页面中，全局环境只有一个，对应的全局执行上下文也只有一个，只有当页面被关闭之后它才会从执行栈中被推出，否则一直存在于栈底。至于函数上下文的个数是没有任何限制的，每到调用执行一个函数时，引擎就会自动新建出一个函数上下文。</p>
+</li>
+</ol>
+<ol start="2">
+<li><p><strong>执行上下文的生命周期</strong></p>
+<ul>
+<li><p><strong>建立阶段</strong></p>
+<p>1.创建变量对象（vo）</p>
+<ul>
+<li>函数环境会初始化创建 Arguments 对象，形式参数（并赋值）</li>
+<li>普通函数声明（并赋值）</li>
+<li>局部变量声明，函数表达式声明（未赋值）</li>
+</ul>
+<p>2.初始化作用域链</p>
+<p>3.确定 this 指向（ this 由调用者确定）</p>
+<p>4.确定作用域（词法环境决定，哪里声明定义，就在哪里确定）</p>
+</li>
+<li><p><strong>执行阶段</strong></p>
+<p>1.变量对象赋值</p>
+<ul>
+<li>变量赋值</li>
+<li>函数表达式赋值</li>
+</ul>
+<p>2.调用函数</p>
+<p>3.顺序执行其它代码</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、作用域"><a href="#二、作用域" class="headerlink" title="二、作用域"></a>二、作用域</h2><p><strong>定义</strong>：简单来讲就是变量的作用范围，也就是在那个范围下可以访问到这个变量。</p>
+<p><strong>作用域链：</strong>所谓作用域链，就是内部上下文所有变量对象（包括父变量对象）的列表。此链主要是用于变量查询。当在遇到<strong>自由变量</strong>（<em>当前作用域未声明</em>）时，就会往上级作用域查找，没有就会一直找到全局，</p>
+<p>如果是<strong>自由变量的赋值运算</strong>，那么就相当于“<code>window.a</code>”，在全局对象上加了个属性。</p>
+<blockquote>
+<p><strong>函数声明时</strong></p>
+</blockquote>
+<p>此时就确定了，它的作用域，也就是声明它时所在的作用域。所以<code>[[scope]]</code>是静态的</p>
+<blockquote>
+<p><strong>函数调用时</strong></p>
+</blockquote>
+<p>而在此时才确定了作用域链，函数调用时就会创建一个新的执行上下文（私有的），也就有了个新的作用域，此时作用域链形成：</p>
+<p><code>作用域链（ScopeChain） = AO + [[scope]]</code>，简单来说就自己的作用域加上父级对象的作用域列表，在查找变量时，先看自己的上下文又没没有，没有则根据作用域链继续查找</p>
+<p>最后总结一下：<strong>函数的<code>[[scope]]</code>属性是在函数创建时就确定了，而变量对象则是在函数激活时，也就是说调用函数时才会确定</strong>。</p>
+<h2 id="三、this的指向"><a href="#三、this的指向" class="headerlink" title="三、this的指向"></a>三、this的指向</h2><ol>
+<li><p><strong>this定义</strong></p>
+<p>this 是执行上下文中的一个属性，this 与上下文中可执行代码的类型有直接关系，<strong>this 值在进入上下文时确定，并且在上下文运行期间永久不变</strong>。</p>
+<p>this大概分为两种全局下的this，函数中的this</p>
+</li>
+<li><p><strong>全局下的this</strong></p>
+<p>在全局下很简单，this 始终是全局对象本身，这样就有可能间接的引用到它了。<code>this.a 相当于 window.a</code></p>
+</li>
+<li><p><strong>各种情况中的this</strong></p>
+<blockquote>
+<p><strong>普通函数中的this</strong></p>
+</blockquote>
+<p>this指向规则：对象中就存在一个this对象，它的指向是动态的，在<strong>被调用是才确定指向</strong>，也就是<strong>谁调用指向谁</strong>，</p>
+<p><strong>注意的是</strong>：以普通函数的方式调用的时候，无论嵌套多少层函数，this 都始终指向<strong>全局对象</strong></p>
+<blockquote>
+<p><strong>箭头函数中的this</strong></p>
+</blockquote>
+<p>箭头函数，有固化this的作用，<strong>它的this指向声明此函数时的作用域的this指向谁就是谁</strong>（箭头内部没有this，只用用外部的this指向了），为了防止this的指向改变，就可以用箭头函数</p>
+<blockquote>
+<p><strong>在对象中使用this</strong></p>
+</blockquote>
+<p>如果是在对象里面使用 this，则指向当前对象。this 可以用在方法内，获取对对象属性的访问，</p>
+<blockquote>
+<p><strong>在事件绑定中的this</strong></p>
+</blockquote>
+<p>关于这一种 this 的指向，我们在学习事件章节时也接触过。DOM 元素绑定事件时，事件处理函数里面的 this 指向绑定了事件的元素。这个地方一定要注意它和 target 的区别，target 是指向触发事件的元素。</p>
+</li>
+<li><p><strong>改变this的指向</strong></p>
+<p>this的指向是可以改变的，通过<code>call()``apply()</code>和<code>bind()</code>改变this的指向，这都是针对普通函数而言</p>
+<blockquote>
+<p><strong>call方法和apply方法</strong></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> Test = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = <span class="string">&quot;JavaScript&quot;</span>;</span><br><span class="line">    <span class="built_in">this</span>.say = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`这是<span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> test = <span class="keyword">new</span> Test();</span><br><span class="line">test.say(); <span class="comment">// 这是JavaScript</span></span><br><span class="line"><span class="keyword">const</span> a = &#123;</span><br><span class="line">    name: <span class="string">&quot;HTML&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//把test的say方法交给了a对象去掉用，就是说改变了调用者</span></span><br><span class="line">test.say.call(a); <span class="comment">// 这是HTML</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//func.call(func1,var1,var2,var3)</span></span><br><span class="line"><span class="comment">//func.apply(func1,[var1,var2,var3])</span></span><br></pre></td></tr></table></figure>
+
+<p>小结：call，apply都是改变了调用者，它区别是传参的形式不同</p>
+<blockquote>
+<p><strong>bind方法绑定 this 指向</strong></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//fun.bind(thisArg[, arg1[, arg2[, ...]]])</span></span><br><span class="line"><span class="comment">//thisArg：当绑定函数被调用时，该参数会作为原函数运行时的 this 指向。</span></span><br><span class="line"><span class="comment">//arg1,arg2,...：当绑定函数被调用时，这些参数将置于实参之前传递给被绑定的方法。</span></span><br></pre></td></tr></table></figure>
+
+<p>bind方法绑定this后并未执行函数，而是返回了一个函数（<em>被绑定了this的那个方法</em>），call华人apply则是立即执行了，bind则需要手动调用。</p>
+</li>
+</ol>
+<h2 id="四、闭包"><a href="#四、闭包" class="headerlink" title="四、闭包"></a>四、闭包</h2><p>一般函数执行完后，就会出栈进行销毁，但也有特殊情况，那就是闭包；闭包时，函数的变量对象不会销毁，就延长了他的作用范围。</p>
+<p><strong>怎么形成闭包？</strong></p>
+<p>原理就是不让垃圾回收机制，回收，怎么才能让引擎知道，这个不回收呢？我们在返回值上做文章，返回一个对象，让这个作用域外的一个变量去引用它，这时这个对象是在函数作用域中，出栈销毁时，发现还有人在引用它，那引擎就不会销毁，这个上下文的变量对象，就形成了闭包。</p>
+<p>闭包不会销毁，那必然就会消耗了内存，注意使用</p>
+<p>而在些单列设计模式中，就是用闭包，来避免变量污染的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fnMoudel = (<span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//执行代码</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>JS基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>JS笔记————面向对象</title>
+    <url>/blog/2020/08/25/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</url>
+    <content><![CDATA[<p>无极太虚气中理，太极太虚理中气。乘气动静生阴阳，阴阳之分为天地。未有宇宙气生形，已有宇宙形寓气。从形究气曰阴阳，即气观理曰太极。天地间，何为对象，那将是万物皆对象！</p>
+<a id="more"></a>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>面向对象是一种编程的思想。而对象就是用来描述一个事物的。</p>
+<p>对象本身是复杂数据结构，存储的数据是以键值对的方式，即属性，而他的<strong>键名只能是String 类型</strong></p>
+<h3 id="对象的属性修饰符"><a href="#对象的属性修饰符" class="headerlink" title="对象的属性修饰符"></a>对象的属性修饰符</h3><p>作用：对属性的描述（比如该属性是否可修改，是否可删除，是否迭代）</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//单条属性添加</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(obj, prop, descriptor);</span><br><span class="line"><span class="comment">//多条属性添加</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperties(obj, prop);</span><br><span class="line"><span class="comment">//prop，&#123;键名:&#123;descriptor&#125;,键名:&#123;descriptor&#125;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//这些方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>obj</code></p>
+<p>要定义属性的对象。</p>
+</li>
+<li><p><code>prop</code></p>
+<p>要定义或修改的属性的名称或 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol"><code>Symbol</code></a> 。</p>
+</li>
+<li><p><code>descriptor</code></p>
+<p>要定义或修改的属性描述符。{}包含</p>
+</li>
+</ul>
+</blockquote>
+<p>使用<strong>点运算符</strong>和 <code>Object.defineProperty()</code> 为对象的属性赋值时，数据描述符中的属性默认值是不同的</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> o = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//该方法加的属性的修饰符，默认都为ture</span></span><br><span class="line">o.a = <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 等同于：</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(o, <span class="string">&quot;a&quot;</span>, &#123;</span><br><span class="line">  value: <span class="number">1</span>,</span><br><span class="line">  writable: <span class="literal">true</span>,</span><br><span class="line">  configurable: <span class="literal">true</span>,</span><br><span class="line">  enumerable: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//该方法加的属性的修饰符，默认都为false</span></span><br><span class="line"><span class="comment">// 另一方面，</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(o, <span class="string">&quot;a&quot;</span>, &#123; <span class="attr">value</span> : <span class="number">1</span> &#125;);</span><br><span class="line"><span class="comment">// 等同于：</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(o, <span class="string">&quot;a&quot;</span>, &#123;</span><br><span class="line">  value: <span class="number">1</span>,</span><br><span class="line">  writable: <span class="literal">false</span>,</span><br><span class="line">  configurable: <span class="literal">false</span>,</span><br><span class="line">  enumerable: <span class="literal">false</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置的属性：</strong></p>
+<ol>
+<li><p><code>value</code>：键值</p>
+</li>
+<li><p><code>writable</code>：是否可修改，默认值为 false</p>
+</li>
+<li><p><code>enumerable</code>：是否可迭代(遍历)，默认值为 false</p>
+</li>
+<li><p><code>configurable</code>：这个属性有2个用途，默认值为 false</p>
+<ul>
+<li>说明对象拥有的这个属性是否可以通过 delete 删除</li>
+<li>是否可以再次修改相关配置</li>
+</ul>
+</li>
+<li><p><code>get</code></p>
+<p>属性的 getter 函数，如果没有 getter，则为 <code>undefined</code>。当访问该属性时，会调用此函数。执行时不传入任何参数，但是会传入 <code>this</code> 对象（由于继承关系，这里的<code>this</code>并不一定是定义该属性的对象）。该函数的返回值会被用作属性的值。  **默认为 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a>**。</p>
+</li>
+<li><p><code>set</code></p>
+<p>属性的 setter 函数，如果没有 setter，则为 <code>undefined</code>。当属性值被修改时，会调用此函数。该方法接受一个参数（也就是被赋予的新值），会传入赋值时的 <code>this</code> 对象。  **默认为 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a>**。</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"><span class="built_in">Object</span>.defineProperties(obj, &#123;</span><br><span class="line">     _name: &#123; <span class="comment">//规范，下划线开头的属性，意为隐藏属性（实际并不是），将会被代理属性代理</span></span><br><span class="line">          value: <span class="string">&quot;f68&quot;</span>, <span class="comment">//键值</span></span><br><span class="line">          enumerable: <span class="literal">false</span>, <span class="comment">//能否遍历（隐藏）</span></span><br><span class="line">          writable: <span class="literal">true</span> <span class="comment">//该属性是否可修改（即value值）</span></span><br><span class="line">      &#125;,</span><br><span class="line">     name: &#123;</span><br><span class="line">         enumerable: <span class="literal">true</span>,</span><br><span class="line">         configurable: <span class="literal">false</span>,</span><br><span class="line">         <span class="comment">//访问属性劫持，（代理属性，访问它从而访问到该对象其他属性）</span></span><br><span class="line">         get() &#123;</span><br><span class="line">         <span class="comment">//访问到被代理的属性</span></span><br><span class="line">         <span class="keyword">return</span> <span class="built_in">this</span>._name; </span><br><span class="line">          &#125;,</span><br><span class="line">         <span class="comment">//修改值时,并传入改变的值</span></span><br><span class="line">         set(newVla)&#123;</span><br><span class="line">             <span class="keyword">if</span>(newVla !== <span class="built_in">this</span>._name)&#123;</span><br><span class="line">                  <span class="built_in">this</span>._name = newVla;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      age: &#123;</span><br><span class="line">            value: <span class="string">&quot;22&quot;</span>,</span><br><span class="line">            enumerable: <span class="literal">true</span>,</span><br><span class="line">            configurable: <span class="literal">false</span>, <span class="comment">//该条属性是否能修改配置 2、该条属性是否可删除</span></span><br><span class="line">            writable: <span class="literal">false</span></span><br><span class="line">       &#125;,</span><br><span class="line">       hot: &#123;</span><br><span class="line">            value: <span class="string">&quot;9331&quot;</span>,</span><br><span class="line">            enumerable: <span class="literal">false</span></span><br><span class="line">       &#125;</span><br><span class="line">&#125;);</span><br><span class="line">obj.name;<span class="comment">//访问该属性，则调用get()方法</span></span><br><span class="line">obj.name = <span class="string">&quot;lisi&quot;</span>;<span class="comment">//属性值被修改时，调用set()方法并接收一个参数（实参 == &quot;lisi&quot;）</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="创建对象的方式"><a href="#创建对象的方式" class="headerlink" title="创建对象的方式"></a>创建对象的方式</h3><ol>
+<li><p><strong>字面量（简单对象，常用）</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//字面量方式</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123;&#125;;</span><br><span class="line"><span class="comment">//示列对象写属性</span></span><br><span class="line"><span class="keyword">let</span> f68 = &#123;</span><br><span class="line">    name: <span class="string">&quot;jizhe&quot;</span>,</span><br><span class="line">    age: <span class="number">15</span>,</span><br><span class="line">    <span class="comment">//对象里方法的两种声明</span></span><br><span class="line">    <span class="comment">//方法1</span></span><br><span class="line">    spa: <span class="function"><span class="keyword">function</span> (<span class="params">happy</span>) </span>&#123;</span><br><span class="line">        happy += <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">return</span> happy;</span><br><span class="line">    &#125;，</span><br><span class="line">    <span class="comment">//与方法1等效，该方法更简洁</span></span><br><span class="line">    get()&#123;</span><br><span class="line">        consol.log(<span class="built_in">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//构造法，等效字面量法</span></span><br><span class="line"><span class="keyword">let</span> f68 = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>工厂函数</strong></p>
+<p>使用一个函数来返回某些特定的对象，这种函数称之为工厂函数</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStudent</span>(<span class="params">name,age,gender</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//创建一个对象</span></span><br><span class="line">	<span class="keyword">let</span> student = &#123;</span><br><span class="line">		name:name,</span><br><span class="line">		age,</span><br><span class="line">		gender</span><br><span class="line">	&#125;;</span><br><span class="line">    <span class="comment">//返回生成的对象</span></span><br><span class="line">	<span class="keyword">return</span> student;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj1 = getStudent(<span class="string">&quot;zhangs&quot;</span>, <span class="number">22</span>, <span class="string">&quot;man&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> obj2 = getStudent(<span class="string">&quot;lisi&quot;</span>, <span class="number">20</span>, <span class="string">&quot;woman&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>构造函数</strong></p>
+<p>构造函数是函数的一种使用方式，我们可以通过构造函数来获取某个类型的对象。</p>
+<p><strong>注意：</strong></p>
+<ol>
+<li><strong>构造函数的首字母需要大写</strong></li>
+<li><strong>使用 <code>new</code> 关键字来获取对象</strong></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name, age, gender</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">  <span class="built_in">this</span>.age = age;</span><br><span class="line">  <span class="built_in">this</span>.gender = gender;</span><br><span class="line">  <span class="built_in">this</span>.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> stu = <span class="keyword">new</span> Student(<span class="string">&quot;wangmaz&quot;</span>, <span class="number">21</span>, <span class="string">&quot;man&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这里的 this 关键字，就是指向 new 出来的实例。即Student创建的对象</p>
+</li>
+<li><p><strong>class</strong></p>
+<p>class 类的用法是 ES6 的新特性，它是构造函数的语法糖。即在构造函数外再包了一层</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="comment">//函数体，固定写法</span></span><br><span class="line">  <span class="keyword">constructor</span>(name, age, gender) &#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line">    <span class="built_in">this</span>.gender = gender;</span><br><span class="line">    <span class="built_in">this</span>.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> stu = <span class="keyword">new</span> Student(<span class="string">&quot;wangmaz&quot;</span>, <span class="number">23</span>, <span class="string">&quot;man&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>class 关键字声明的叫类，在类的声明中，有一个<code>constructor</code>函数，当我们使用<code>new</code>关键字来产生实例的时候，<code>constructor</code>函数就会被调用。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><blockquote>
+<p>对象拥有它本身特有的属性，是正常的，有时它的方法会是相同的，多个对象都会用到同一个方法，那就会给每个对象都添加这种方法，这是不符合编程思想的。就得相同类型的对象，有个公共方法，也就有了继承的概念</p>
+</blockquote>
+<p>继承机制：子类可以有父类的属性和方法</p>
+<blockquote>
+<p>每个对象都有个原型属性，即<code>__proto__</code>(同<code>prototype</code>)，它指向的是该对象的原型，<strong>即构建这个对象的构造函数的<code>prototype</code>属性</strong>（<code>__proto__</code> === <code>prototype</code>）,所有的对象本质都是<code>new Object</code>方式来的</p>
+</blockquote>
+<h4 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h4><blockquote>
+<p>通过全局Object，所有对象都可以访问到<code>Object.prototype</code>上的方法，所以可以在该属性上添加方法，即所有对象都可以使用</p>
+</blockquote>
+<p><code>new Object</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> obj1 = &#123;</span><br><span class="line">     	name: <span class="string">&quot;zhangshan&quot;</span>,</span><br><span class="line">     	age: <span class="number">22</span>,</span><br><span class="line">     	gender: <span class="string">&quot;man&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    obj2 = &#123;</span><br><span class="line">    	name: <span class="string">&quot;lisi&quot;</span>,</span><br><span class="line">    	age: <span class="number">23</span>,</span><br><span class="line">    	gender: <span class="string">&quot;man&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//在该构造函数（Object）上的prototype上添加了一个属性run（）方法</span></span><br><span class="line"><span class="comment">//在访问对象属性时，先查找自身，没有则往上层找，即它的原型，一直到Object</span></span><br><span class="line"><span class="comment">//Object为顶层对象，所有的原型最终都指向它</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.run = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//都可以使用run这个方法</span></span><br><span class="line">obj1.run();<span class="comment">//zhangshan</span></span><br><span class="line">obj2.run();<span class="comment">//lisi</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><blockquote>
+<p>利用构造函数创建的对象</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Students</span>(<span class="params">name, age, gender</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line">    <span class="built_in">this</span>.gender = gender;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在该构造函数上的prototype上添加了一个属性jump（）方法，只要是用该类型（Students）构造函数构建的对象都可以访问到此方法</span></span><br><span class="line">Students.prototype.jump = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> stu1 = <span class="keyword">new</span> Students(<span class="string">&quot;王麻子&quot;</span>, <span class="number">23</span>, <span class="string">&quot;man&quot;</span>); <span class="comment">//通过Students这个构造函数，创建的对象</span></span><br><span class="line"><span class="keyword">let</span> stu2 = <span class="keyword">new</span> Students(<span class="string">&quot;小明&quot;</span>, <span class="number">23</span>, <span class="string">&quot;man&quot;</span>);</span><br><span class="line">stu1.run();<span class="comment">//同时也可以访问到，最开始在Object.prototype上的run()方法</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="class"><a href="#class" class="headerlink" title="class"></a>class</h4><blockquote>
+<p>使用构造函数的原型来实现继承，代码上看比较零散，不够统一，需要单独的指定构造函数的 prototype，class就可以把包裹在一起，代码形式表现就很清晰</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name, age, gender) &#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line">    <span class="built_in">this</span>.gender = gender;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  sayName() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> stu1 = <span class="keyword">new</span> Student(<span class="string">&quot;华仔&quot;</span>, <span class="number">21</span>, <span class="string">&quot;man&quot;</span>);</span><br><span class="line">stu1.sayName();<span class="comment">//华仔</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我们在定义 class 的时候，<code>sayName</code>方法并没有和其他属性一样声明在 <code>this</code> 身上，而是在 class 的代码块中添加的方法，这样的方式声明的属性，实际上就是添加在原型上（<code>Student.prototype</code>）。</p>
+</blockquote>
+<h4 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h4><blockquote>
+<p>以上都只能在相同类型的对象，添加公共方法，不能再不同类型上继承来，并还不能拿到父类的属性，在构造函数中，我们可以调用<strong>原型身上的构造函数来获取到其属性值</strong>。</p>
+<p>原型链：每个对象都有其原型（prototype），原型链就是反映继承关系的过程：子类=&gt;父类=&gt;祖类这样的关系</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Ancestors</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Father</span>(<span class="params">name,gender</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.gender = gender;</span><br><span class="line">    Ancestors.call(<span class="built_in">this</span>,name);<span class="comment">//让Ancestors这个构造函数通过call方法被this（Father）调用，传参</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Child</span>(<span class="params">name,gender,age</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.age = age;</span><br><span class="line">    Father.call(<span class="built_in">this</span>,name,gender);<span class="comment">//让Father这个构造函数通过call方法被this（Child）调用，传参</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//子集添加方法</span></span><br><span class="line">Children.prototype.sayAge = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;子集&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//将每个不同类型的构造函数对象建立联系</span></span><br><span class="line">Children.prototype.__proto__ = Father.prototype;</span><br><span class="line">Father.prototype.__proto__ = Ancestors.prototype;</span><br><span class="line"><span class="keyword">let</span> son = <span class="keyword">new</span> Children(<span class="number">12</span>,<span class="string">&quot;man&quot;</span>,<span class="string">&quot;张山峰&quot;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(son);<span class="comment">//Children &#123;name: &quot;张山峰&quot;, gender: &quot;man&quot;, age: 12&#125;</span></span><br><span class="line"><span class="comment">//此时Children这个类型的对象就能，拿到父类的属性，和方法</span></span><br></pre></td></tr></table></figure>
+
+<p>这种构造函数代码写起来也是零散，不统一，同样也可以用class</p>
+<p><strong>class实现继承关系，原型链</strong></p>
+<blockquote>
+<p>用<code>extends</code>关键字，建立继承关系（继承谁），并在<code>constructor</code>构造函数内调用<code>super()</code>方法（建立原型链必须调用），相当于调用了父类的构造函数，效果等效构造函数建立原型链，表现形式不一样</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ancestor</span></span>&#123;</span><br><span class="line">     <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="built_in">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	sayName() &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span> <span class="keyword">extends</span> <span class="title">Ancestor</span> </span>&#123;</span><br><span class="line">   <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">     <span class="built_in">super</span>(name);</span><br><span class="line">     <span class="built_in">this</span>.age = age;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   sayAge() &#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="built_in">this</span>.age);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//子类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Father</span> </span>&#123;<span class="comment">//extends关键字把Child.prototype.__proto__ = Father.prototype</span></span><br><span class="line">   <span class="keyword">constructor</span>(name, age, gender) &#123;</span><br><span class="line">     	<span class="comment">//必须调用super()方法，也就等效 Father.call(this,name,age)</span></span><br><span class="line">       <span class="built_in">super</span>(name, age);</span><br><span class="line">     <span class="built_in">this</span>.gender = gender;</span><br><span class="line">   &#125;</span><br><span class="line">   sayGender() &#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><blockquote>
+<p>this指向规则：对象中就存在一个this对象，它的指向是动态的，在被调用是才确定指向，也就是<strong>谁调用指向谁</strong></p>
+<p>箭头函数，有固化this的作用，<strong>它的this指向声明此函数时的作用域的this指向谁就是谁</strong>（箭头内部没有this，只用用外部的this指向了）</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JS进阶</category>
+      </categories>
+  </entry>
 </search>
