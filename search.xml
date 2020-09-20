@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Hello World</title>
-    <url>/blog/2020/08/24/hello-world/</url>
+    <url>/2020/08/24/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -20,7 +20,7 @@
   </entry>
   <entry>
     <title>JS笔记————执行上下文</title>
-    <url>/blog/2020/08/24/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/</url>
+    <url>/2020/08/24/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87/</url>
     <content><![CDATA[<p>什么是执行上下文？什么又是作用域？this指向？函数进栈执行/出栈销毁？<br>简单归纳总结一下</p>
 <a id="more"></a>
 <h2 id="一、执行上下"><a href="#一、执行上下" class="headerlink" title="一、执行上下"></a>一、执行上下</h2><ol>
@@ -149,7 +149,7 @@
   </entry>
   <entry>
     <title>JS笔记————面向对象</title>
-    <url>/blog/2020/08/25/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</url>
+    <url>/2020/08/25/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</url>
     <content><![CDATA[<p>无极太虚气中理，太极太虚理中气。乘气动静生阴阳，阴阳之分为天地。未有宇宙气生形，已有宇宙形寓气。从形究气曰阴阳，即气观理曰太极。天地间，何为对象，那将是万物皆对象！</p>
 <a id="more"></a>
 <h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>面向对象是一种编程的思想。而对象就是用来描述一个事物的。</p>
