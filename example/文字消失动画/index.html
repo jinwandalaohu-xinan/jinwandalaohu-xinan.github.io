@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字消失动画</title>
+</head>
+<style>
+    body{
+        height: 100vh;
+        background-color:rgb(0,0,0);
+        overflow: hidden;  
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        font-family: 'Poppins',sans-serif;
+    }
+    p{
+        font-size: 80px;
+        color: transparent;
+        position: relative;
+        font-weight: 900;
+        background-image: -webkit-linear-gradient(125deg, #2c3e50, #27ae60, #2980b9, #e74c3c, #8e44ad);
+        -webkit-background-clip: text;
+    }
+    p::before{
+        content: '';
+        position: absolute;
+        left: 110%;
+        height: 110%;
+        width: 120%;
+        background-image:-webkit-linear-gradient(left,transparent 0%,#000 5%,#000 100%);
+        animation: afe 5s linear infinite;
+    }
+    @keyframes afe{
+        0%{
+            left: 110%
+        }
+        100%{
+            left: -10%
+        }
+        
+    }
+</style>
+<body>
+    <p>Yangtze River Yangtze River</p>
+</body>
+</html>

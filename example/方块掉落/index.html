@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方块掉落</title>
+</head>
+<style>
+    body {
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+
+    }
+
+    /* 容器的样式 */
+    .container {
+        width: 100%;
+        height: 100%;
+        padding-left: 0%;
+        box-sizing: border-box;
+        background-image: url("./动漫1_r.jpg");
+        background-size: cover;
+        user-select: none;
+    }
+
+    /* 默认方块的样式 */
+    span {
+        display: inline-block;
+        width: 9.7%;
+        height: 8%;
+        background-color: #fff;
+        box-sizing: border-box;
+        margin-left: 0px;
+    }
+
+    /* 点击后的方块样式 */
+    span.fall {
+        position: relative;
+        pointer-events: none;
+        animation: animated 3s linear forwards;
+    }
+
+    /* 方块动画 */
+    @keyframes animated {
+        0% {
+            top: 0;
+            transform: rotate(0);
+        }
+
+        100% {
+            top: 1000px;
+            transform: rotate(40deg);
+        }
+    }
+</style>
+
+<body>
+    <section class="container">
+
+    </section>
+
+    <script>
+        //添加class
+        function fall(ele) {
+            let array = ["#ee3f4d", "#5a1216", "#eea2a4", "#cc163a", "#eea6b7", "#a7a8bd", "#2376b7", "#5cb3cc",
+                "#12a182","#f8df72"
+            ];
+            // 当点了40个方块，所有方块都落下
+            if (state == 40) {
+                for (item of spanEle) {
+                    item.className = "fall";
+                    item.style.backgroundColor = array[Math.floor(Math.random() * 10)];
+                    item.style.animationDelay = Math.floor(Math.random() * 10) * .1 + "s";
+                }
+            } else {
+                ele.className = "fall";
+                ele.style.backgroundColor = array[Math.floor(Math.random() * 10)];
+                state++;
+            }
+        }
+
+        // 添加100span
+        let container = document.querySelector(".container");
+        let str = "";
+        let state = 0;
+
+        for (let i = 1; i <= 120; i++) {
+            str += " <span></span>";
+        }
+        container.innerHTML = str;
+
+        //事件监听每个span，被点击时添加class
+        let spanEle = document.querySelectorAll("span");
+        // let spanEle = document.getElementsByTagName("span");
+        // console.log(spanEle);
+
+        spanEle.forEach(element => {
+            element.addEventListener("click", (e) => {
+                fall(e.target);
+            });
+        });
+    </script>
+</body>
+
+</html>

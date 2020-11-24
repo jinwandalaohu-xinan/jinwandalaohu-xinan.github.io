@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫眼电影-电影详情</title>
+    <link rel="stylesheet" href="./CSS/normalize.css">
+    <link rel="stylesheet" href="./CSS/indextongyong.css">
+    <link rel="stylesheet" href="./CSS/headerFooter.css">
+    <link rel="stylesheet" href="./CSS/details.css">
+</head>
+
+<body>
+    <!-- 页面头部 -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="./index.html"><img src="./IMG/logo_s.png" alt=""></a>
+            </div>
+            <div class="place"><span>成都</span></div>
+            <ul>
+                <li><a href="./index.html">首页</a></li>
+                <li><a href="./movie.html">电影</a></li>
+                <li><a href="./hotList.html">榜单</a></li>
+                <li><a href="./infor.html">热点</a></li>
+            </ul>
+            <div>
+                <input type="text" placeholder="找影视剧、影人、影院">
+                <i></i>
+                <div>
+                    <img src="./IMG/7dd82a16316ab32c8359debdb04396ef2897.png" alt="">
+                    <span><a href="./login.html">登录</a></span>
+                </div>
+            </div>
+        </div>
+        
+    </header>
+
+    <div class="movie">
+        <div class="container">
+            <figure>
+                <img src="./IMG/dianyingxiangqing_06.png" alt="">
+                <figcaption>
+                    <h1>湄公河行动</h1>
+                    <p>Operation Mekong</p>
+                    <p>动作，犯罪，剧情</p>
+                    <p>中国大陆，中国香港/124分钟</p>
+                    <p>2016-09-30大陆上映</p>
+                    <span> <i></i> 想看</span><span> <i></i> 评分</span>
+                </figcaption>
+            </figure>
+
+            <!-- 评分 -->
+            <div>
+                <ul>
+                    <li>
+                        <span>用户评分</span>
+                        <span>9.3</span>
+                        <p>55.6万人评分</p>
+                    </li>
+                    <li>
+                        <span>专业评分</span>
+                        <span>6.4</span>
+                        <p>45人评分</p>
+                    </li>
+                    <li>
+                        <span>累计票房</span>
+
+                        <p>10.33亿</p>
+                    </li>
+                </ul>
+
+                <a href="#3">立即购票</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主体详情 -->
+    <main>
+        <i></i><i></i>
+        <div class="movieDetails">
+            <!-- 导航 -->
+            <nav>
+                <ul>
+                    <li><a href="#12">介绍</a></li>
+                    <li><a href="#13">演职人员</a></li>
+                    <li><a href="#14">奖项</a></li>
+                    <li><a href="#15">图集</a></li>
+                    <li id="marker"></li>
+                </ul>
+            </nav>
+            <script type="text/javascript">
+                var marker = document.querySelector('#marker');
+                var item = document.querySelectorAll('ul a');
+
+                function indicator(e) {
+                    marker.style.left = e.offsetLeft + "px";
+                    marker.style.width = e.offsetWidth + "px";
+                }
+
+                item.forEach(link => {
+                    link.addEventListener('mouseenter', (e) => {
+                        indicator(e.target);
+                    })
+                });
+            </script>
+            <!-- 剧情简介 -->
+            <section class="jq">
+                <h2>剧情简介</h2>
+                <p>金三角湄公河上，一处被称为“鬼门关”的河段，两艘来自中国的商船遭到不明身份之人的枪击袭击。未过多久，泰国军方召开新闻发布会，指责中国商船贩卖毒品。虽然发布会宣称船员全部逃亡，但是十三具遭受残忍杀害的中国船员尸体很快被人发现。这起胆大妄为的案件令中国警方大为震惊，云南省缉毒总队队长高刚（张涵予
+                    饰）受命带特别行动小组前往泰国，并与情报员方新武（彭于晏
+                    饰）合作接洽。根据现有资料显示，这件案子由盘踞在金三角的大毒枭糯卡所为。糯卡贪婪残忍，胆大包天，是湄公河流域上一颗惊扰运输安全的毒瘤。为了将这个恶棍绳之于法，中国、老挝、缅甸开展了三国联合巡逻，集中对糯卡的制毒窝点进行扫荡。而高刚等人也深入最危险境地，与丧失人性的贩毒分子进行惨烈对决……
+                </p>
+            </section>
+
+            <!-- 演员介绍 -->
+            <section class="yanyuan">
+                <h2 id="#13">演职人员 <a href="#23">全部&gt;</a></h2>
+                <div>
+                    <div class="daoyan">
+                        <p>导演</p>
+                        <figure>
+                            <img src="./IMG/daoyan.jpg" alt="">
+                            <figcaption>
+                                <span>林超贤</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="yanyuans">
+                        <p>导演</p>
+                        <ul>
+                            <li>
+                                <figure>
+                                    <img src="./IMG/dianyingxiangqing_07.png" alt="">
+                                    <figcaption>
+                                        <p>张涵予</p>
+                                        <span>饰：高刚</span>
+                                    </figcaption>
+                                </figure>
+                            </li>
+
+                            <li>
+                                <figure>
+                                    <img src="./IMG/yanyuan_img01.jpg" alt="">
+                                    <figcaption>
+                                        <p>彭于晏</p>
+                                        <span>饰：方新武</span>
+                                    </figcaption>
+                                </figure>
+                            </li>
+
+                            <li>
+                                <figure>
+                                    <img src="./IMG/yanyuan_img02.jpg" alt="">
+                                    <figcaption>
+                                        <p>冯文娟</p>
+                                        <span>饰：郭冰</span>
+                                    </figcaption>
+                                </figure>
+                            </li>
+
+                            <li>
+                                <figure>
+                                    <img src="./IMG/yanyuan_img03.jpg" alt="">
+                                    <figcaption>
+                                        <p>吴旭东</p>
+                                        <span>饰：特警队长</span>
+                                    </figcaption>
+                                </figure>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 图集 -->
+            <section class="photo"">
+                <h2 id="#15">图集 <a href="#23">全部&gt;</a></h2>
+                <div>
+                    <img src="./IMG/tuji_img01.jpg" alt="">
+                    <ul>
+                        <li><img src="./IMG/tuji_img02.jpg" alt=""></li>
+                        <li><img src="./IMG/tuji_img03.jpg" alt=""></li>
+                        <li><img src="./IMG/tuji_img04.jpg" alt=""></li>
+                        <li><img src="./IMG/tuji_img05.jpg" alt=""></li>
+                    </ul>
+                </div>
+
+            </section>
+
+            <!-- 评论 -->
+            <section class="comment">
+                <h2>热门短评 <a href="#25"><label for="write">写短评</label></a></h2>
+                <input type="text" id="write" required><span class="buplish">发表</span>
+
+                <div class="item">
+                    <img src="./IMG/610bd1d6daddffca084a9d45f8a24fcc11575.jpg" alt="">
+                    <i></i>
+                    <div class="commentText">
+                        <p>yufujin</p>
+                        <p>09-30 <i></i><span><i></i>12058</span></p>
+                        <p>本来三星，但为了怼隔壁郭敬明女士，更为了中国电影，任性四星。体制下和敏感题材导致片头片尾有规避和迎合。但从选角到动作场面的制作，有大片格局，国内类型片里绝对翘楚。生猛，跳跃，肾上腺素爆表。童子军恐，哮天犬伤，荷枪实弹，诚意之作。</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="./IMG/610bd1d6daddffca084a9d45f8a24fcc11575.jpg" alt="">
+                    <i></i>
+                    <div class="commentText">
+                        <p>yufujin</p>
+                        <p>09-30 <i></i><span><i></i>12058</span></p>
+                        <p>本来三星，但为了怼隔壁郭敬明女士，更为了中国电影，任性四星。体制下和敏感题材导致片头片尾有规避和迎合。但从选角到动作场面的制作，有大片格局，国内类型片里绝对翘楚。生猛，跳跃，肾上腺素爆表。童子军恐，哮天犬伤，荷枪实弹，诚意之作。</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="./IMG/610bd1d6daddffca084a9d45f8a24fcc11575.jpg" alt="">
+                    <i></i>
+                    <div class="commentText">
+                        <p>yufujin</p>
+                        <p>09-30 <i></i><span><i></i>12058</span></p>
+                        <p>本来三星，但为了怼隔壁郭敬明女士，更为了中国电影，任性四星。体制下和敏感题材导致片头片尾有规避和迎合。但从选角到动作场面的制作，有大片格局，国内类型片里绝对翘楚。生猛，跳跃，肾上腺素爆表。童子军恐，哮天犬伤，荷枪实弹，诚意之作。</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="./IMG/610bd1d6daddffca084a9d45f8a24fcc11575.jpg" alt="">
+                    <i></i>
+                    <div class="commentText">
+                        <p>yufujin</p>
+                        <p>09-30 <i></i><span><i></i>12058</span></p>
+                        <p>本来三星，但为了怼隔壁郭敬明女士，更为了中国电影，任性四星。体制下和敏感题材导致片头片尾有规避和迎合。但从选角到动作场面的制作，有大片格局，国内类型片里绝对翘楚。生猛，跳跃，肾上腺素爆表。童子军恐，哮天犬伤，荷枪实弹，诚意之作。</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="./IMG/610bd1d6daddffca084a9d45f8a24fcc11575.jpg" alt="">
+                    <i></i>
+                    <div class="commentText">
+                        <p>yufujin</p>
+                        <p>09-30 <i></i><span><i></i>12058</span></p>
+                        <p>本来三星，但为了怼隔壁郭敬明女士，更为了中国电影，任性四星。体制下和敏感题材导致片头片尾有规避和迎合。但从选角到动作场面的制作，有大片格局，国内类型片里绝对翘楚。生猛，跳跃，肾上腺素爆表。童子军恐，哮天犬伤，荷枪实弹，诚意之作。</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="./IMG/610bd1d6daddffca084a9d45f8a24fcc11575.jpg" alt="">
+                    <i></i>
+                    <div class="commentText">
+                        <p>yufujin</p>
+                        <p>09-30 <i></i><span><i></i>12058</span></p>
+                        <p>本来三星，但为了怼隔壁郭敬明女士，更为了中国电影，任性四星。体制下和敏感题材导致片头片尾有规避和迎合。但从选角到动作场面的制作，有大片格局，国内类型片里绝对翘楚。生猛，跳跃，肾上腺素爆表。童子军恐，哮天犬伤，荷枪实弹，诚意之作。</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="./IMG/610bd1d6daddffca084a9d45f8a24fcc11575.jpg" alt="">
+                    <i></i>
+                    <div class="commentText">
+                        <p>yufujin</p>
+                        <p>09-30 <i></i><span><i></i>12058</span></p>
+                        <p>本来三星，但为了怼隔壁郭敬明女士，更为了中国电影，任性四星。体制下和敏感题材导致片头片尾有规避和迎合。但从选角到动作场面的制作，有大片格局，国内类型片里绝对翘楚。生猛，跳跃，肾上腺素爆表。童子军恐，哮天犬伤，荷枪实弹，诚意之作。</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边栏 -->
+        <div class="aside">
+            <!-- 相关资讯 -->
+            <div class="asideItmes1">
+                <h2>相关资讯</h2>
+
+                <figure>
+                    <img src="./IMG/dianyingxiangqing_03.png" alt="">
+                    <figcaption>
+                        <p>《湄公河行动》上映20天票房突破10亿大关</p>
+                        <p>
+                            <span>猫眼电影 </span>
+                            <img src="./IMG/icon09.png" alt="">
+                            <span> 21145</span>
+                            <img src="./IMG/icon10.png" alt="">
+                            <span> 211</span>
+                        </p>
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="./IMG/biao.jpg" alt="">
+                    <figcaption>
+                        <p>《湄公河行动》上映20天票房突破10亿大关</p>
+                        <p>
+                            <span>猫眼电影 </span>
+                            <img src="./IMG/icon09.png" alt="">
+                            <span> 21145</span>
+                            <img src="./IMG/icon10.png" alt="">
+                            <span> 211</span>
+                        </p>
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="./IMG/oneweek.jpg" alt="">
+                    <figcaption>
+                        <p>《湄公河行动》上映20天票房突破10亿大关</p>
+                        <p>
+                            <span>猫眼电影 </span>
+                            <img src="./IMG/icon09.png" alt="">
+                            <span> 21145</span>
+                            <img src="./IMG/icon10.png" alt="">
+                            <span> 211</span>
+                        </p>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <!-- 相关电影 -->
+            <div class="asideItmes2">
+                <h2>相关电影</h2>
+                <div>
+                    <figure>
+                        <img src="./IMG/film_img01.jpg" alt="">
+                        <figcaption>
+                            <p>反贪风暴</p>
+                            <p> <i>8.3</i></p>
+                        </figcaption>
+                    </figure>
+    
+                    <figure>
+                        <img src="./IMG/film_img02.jpg" alt="">
+                        <figcaption>
+                            <p>追凶者也</p>
+                            <p> <i>8.5</i></p>
+                        </figcaption>
+                    </figure>
+    
+                    <figure>
+                        <img src="./IMG/film_img03.jpg" alt="">
+                        <figcaption>
+                            <p>惊天破</p>
+                            <p> <i>6.6</i></p>
+                        </figcaption>
+                    </figure>
+    
+                    <figure>
+                        <img src="./IMG/film_img04.jpg" alt="">
+                        <figcaption>
+                            <p>机械师2：复活</p>
+                            <p> <i>8.9</i></p>
+                        </figcaption>
+                    </figure>
+    
+                    <figure>
+                        <img src="./IMG/film-img05.jpg" alt="">
+                        <figcaption>
+                            <p>巴黎危机</p>
+                            <p> <i>8.3</i></p>
+                        </figcaption>
+                    </figure>
+    
+                    <figure>
+                        <img src="./IMG/film_img06.jpg" alt="">
+                        <figcaption>
+                            <p>寒战2</p>
+                            <p> <i>8.6</i></p>
+                        </figcaption>
+                    </figure>
+                </div>
+                
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>©2016 猫眼电影 maoyan.com 京ICP证160733号 京ICP备16022489号-1 京公网安备 11010520230881号 网络文化经营许可证 电子公告服务规则</p>
+        <p>北京猫眼文化传媒有限公司</p>
+        <!-- 辅助功能 -->
+        <ul>
+            <li>
+                <img src="./IMG/iconfixed5.png" alt="">
+                <span>建议</span>
+            </li>
+            <li>
+                <img src="./IMG/iconfixed3.png" alt="">
+                <span>客服</span>
+            </li>
+            <li>
+                <img src="./IMG/iconfixed4.png" alt="">
+                <span> <a href="#">置顶</a> </span>
+            </li>
+        </ul>
+    </footer>
+</body>
+
+</html>

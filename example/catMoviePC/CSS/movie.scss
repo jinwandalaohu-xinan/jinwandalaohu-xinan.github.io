@@ -1,0 +1,210 @@
+/* 页面头部 */
+header {
+    ul li:nth-child(2) {
+        background-color: #ef4238;
+    }
+
+    ul li:nth-child(2) a {
+        color: #fff;
+    }
+
+    ul li:not(:nth-child(2)):hover a {
+        color: #ef4238;
+    }
+}
+
+/* 顶部导航 */
+.topNav{
+    background-color: #47464a;
+    ul{
+        margin: 0 auto;
+        position: relative;
+        display: flex;
+        width: 420px;
+        li{
+            width: 140px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            color: #999;
+        }
+        &>i{
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #fff;
+            left:65px;
+            bottom: -8px;
+            transform: rotateZ(45deg);
+            transition: .3s;
+        }
+    }
+}
+main{
+    width: 1120px;
+    margin: 0 auto;
+}
+/* 筛选 条件 */
+.condition{
+    padding: 0 20px;
+    border: 1px solid #e5e5e5;
+    margin-top: 40px;
+    &>ul{
+        font-size: 14px;
+        li{
+            padding: 10px 0;
+            position: relative;
+            div{
+                height: 24px;
+                line-height: 24px;
+                float: left;
+                color: #999;
+                font-size: 14px;
+                
+            }
+            &>ul{
+                &>.first{
+                    background-color: red;
+                    a{
+                        color: #fff;
+                    }
+                   
+                }
+                margin-left: 40px;
+                overflow: hidden;
+                li{
+                    padding: 3px 9px;
+                    border-radius: 14px;
+                    display: inline-block;
+                    margin-left: 12px;
+                    
+                }
+                li:hover:not(:first-child) a{
+                    color:red;
+                }
+            }
+        }
+    }
+}
+
+/* 电影网格 */
+.movieGird{
+    margin-top: 40px;
+    /* 排序 */
+    input{
+        display: none;
+    }
+    #box1:checked ~ .order li:nth-of-type(1) i{
+        border-color: red;
+        border: 5px solid red;
+    }
+    #box2:checked ~ .order li:nth-of-type(2) i{
+        border-color: red;
+        border: 5px solid red;
+    }
+    #box3:checked ~ .order li:nth-of-type(3) i{
+        border-color: red;
+        border: 5px solid red;
+    }
+    #box2:checked ~ .grid .number{
+       order: 1;
+    }
+    #box3:checked ~ .grid .number{
+        order: -1;
+     }
+    &>div{
+        ul{
+            
+            li{
+                display: inline-block;
+                height: 20px;
+                line-height: 20px;
+                position: relative;
+                transition:  all 0.3s;
+
+                label{
+                    margin-left: 30px;
+                    margin-right: 20px;
+                }
+                i{
+                    position: absolute;
+                    // display: inline-block;
+                    width: 6px;
+                    height: 6px;
+                    // padding: 3px;
+                    border: 5px solid #e5e5e5;
+                    border-radius: 50%;
+                    left: 0;
+                    top: 2px;
+
+                }
+            }
+        }
+    }
+
+    /* 网格 */
+    .grid{
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        justify-content: space-between;
+        li{
+            margin-bottom: 20px;
+            transition: .3s;
+            &:hover {
+                box-shadow: 0 2px 20px rgba(0, 0, 0, .2 );
+                transform: translate3d(0, -2px, 0);
+            }
+            // &:not(:nth-child(6n)){
+            //     margin-right: 30px;
+            // }
+            figure{
+                text-align: center;
+                img{
+                    border: 1px solid #e5e5e5;
+                    margin-bottom: 20px;
+                   
+                }
+                figcaption{
+
+                    i{
+                        font-size: 14px;
+                        color: #ffb400;
+                        margin: 25px 0;
+                    }
+                }
+            }
+        }
+    }
+
+    /* 翻页 */
+    .next{
+        display: flex;
+        width: 434px;
+        justify-content: space-between;
+        margin: 25px auto 0;
+        a{
+            display: inline-block;
+            padding: 8px 13px;
+            font-size: 12px;
+            border: 1px solid #d8d8d8;
+            &:first-child{
+                color: #fff;
+                background-color: red;
+                border-color: red;
+            }
+            &:hover:not(:first-child){
+                color: #fff;
+                background-color: red;
+                border-color: red;
+            }
+        }
+        
+    }
+}
+
+
+/* 页面底部 */
+footer{
+    margin-top: 95px;
+}

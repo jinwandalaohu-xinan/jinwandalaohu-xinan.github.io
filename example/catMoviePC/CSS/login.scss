@@ -1,0 +1,204 @@
+main{
+    width: 870px;
+    
+    margin: auto;
+    /* logo */
+    header{
+        width: 100%;
+        height: 48px;
+        margin-top: 40px;
+    }
+    /* 注册 */
+    section{
+        display: flex;
+        font-size: 14px;
+        .login{
+            width: 270px;
+            color: #666;
+            margin-left: 115px;
+            margin-top: 80px;
+            .header{
+                display: flex;
+                justify-content: space-between;
+                i{
+                    display: inline-block;
+                    width: 13px;
+                    height: 13px;
+                    background-image: url("../IMG/sprite_webpage.png");
+                    background-position: -13px -59px;
+                    transform: translateY(2px);
+                }
+                a{
+                    font-size: 12px;
+                    color: #666;
+                }
+            }
+            div{
+                position: relative;
+                
+            }
+            .username,.pwd{
+                span{
+                    position: absolute;
+                    padding: 3px 10px;
+                    top: 30%;
+                    right: -30%;
+                    background-color: #e42c31;
+                    transition: .2s;
+                    opacity: 0;
+                    color: #fff;
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        width: 10px;
+                        height: 10px;
+                        background-color: #e42c31;
+                        top: 30%;
+                        left: -5px;
+                        transform: rotate(45deg);
+                    }
+                    
+                   
+                }
+                
+            }
+            .username{
+                input:focus~span{
+                    right: -50%;
+                    opacity: 1;
+                }
+            }
+           
+            .pwd{
+                span{
+                    right: -40%;
+                }
+                input:focus~span{
+                    right: -65%;
+                    opacity: 1;
+                }
+            }
+            input:focus~span{
+                right: -50%;
+            }
+            label{
+                position: absolute;
+                width: 18px;
+                height: 17px;
+                background-image: url('../IMG/login_icon01.png');
+                left: 10px;
+                top: 20px;
+            }
+            input[type='password']~label{
+                background-image: url('../IMG/login_icon02.png');
+            }
+            input::-webkit-input-placeholder{
+                color: #a9a9a9;
+            }
+            input[type='text'],input[type='password']{
+                width: 100%;
+                height: 36px;
+                box-sizing: border-box;
+                padding: 10px 10px 10px 34px;
+                border: 1px solid #aaa;
+                margin-top: 10px;
+                outline: none;
+            }
+            input[type='text']{
+                margin-bottom: 6px;
+            }
+            input[type='text']:focus,input[type='password']:focus{
+                border-color: red;
+            }
+            form div:nth-of-type(3){
+                display: flex;
+                justify-content: space-between;
+                margin: 10px 0 17px;
+                p{
+                    color: #333;
+                }
+                a{
+                    color: #ec454a;
+                }
+            }
+            /* 登录按钮 */
+            button{
+                width: 100%;
+                height: 34px;
+                line-height: 34px;
+                font-weight: 700;
+                padding: 0;
+                border: none;
+                border-radius: 3px;
+                background-color: #e63237;
+                color: #fff;
+                
+            }
+            &>p{
+                margin-top: 11px;
+                a{
+                    color: #ec454a;
+                }
+        }
+        
+        }
+    }
+
+}
+ /* 弹出 */
+.popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    // border: 1px solid ;
+    border-radius: 5px;
+    box-shadow: 0 2px 7px 0 hsla(0,0%,53%,.5);
+    background-color: #fff;
+    span{
+        color: #ec454a;
+    }
+    .head{
+        background-color: #ec454a;
+        color: #Fff;
+        font-size: 18px;
+        font-weight: 700;
+        padding: 5px 0;
+        margin-bottom: 10px;
+    }
+    .content{
+        padding: 10px 20px;
+        .row-1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .icon-gou{
+                display: inline-block;
+                width: 48px;
+                height: 48px;
+                background: url("../IMG/dagou.png");
+            }
+        }
+        .btn{
+            display: block;
+            padding: 3px 10px;
+            margin: 30px auto;
+            background-color: #74b9ff;
+            outline: none;
+            border: 2px solid #74b9ff;
+            border-radius: 5px;
+            span{
+                color: #fff;
+            }
+            &:hover{
+                background-color: #0984e3;
+            }
+
+            
+        }
+        
+    }
+}

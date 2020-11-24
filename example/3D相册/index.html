@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D相册</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* 父容器盒子 */
+        .container{
+            position: relative;
+            width: 300px;
+            height: 300px;
+            transform-style: preserve-3d;
+            animation: rotate 20s linear infinite;
+        }
+        /* 图片盒子 */
+        .container div{
+            position: absolute;
+            transform-style: preserve-3d;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* 利用变量，给每个图片盒子加transform */
+            transform: rotateY(calc(var(--i) * 45deg)) translateZ(500px);
+            /* 盒子投影 */
+            -webkit-box-reflect: below 0px linear-gradient(to bottom,transparent,transparent,#0004);
+        }
+
+        .container img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        p{
+            margin: 0;
+            position: absolute;
+            font-size: 50px;
+            color: #03a9f4;
+            z-index: -1;
+            top: 65%;
+            left: 44%;
+            letter-spacing: 20px;
+            font-weight: 700;
+            -webkit-box-reflect: below 5px linear-gradient(to bottom,transparent,transparent,#0004);
+        }
+        /* 定义动画 */
+        @keyframes rotate{
+            0%{
+                transform: perspective(1200px) rotateY(0);
+            }
+            100%{
+                transform: perspective(1200px) rotateY(330deg) ;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="container">
+        <div style="--i:1"><img src="./imges/cat1.jpg" alt=""></div>
+        <div style="--i:2"><img src="./imges/cat2.jpg" alt=""></div>
+        <div style="--i:3"><img src="./imges/cat3.jpg" alt=""></div>
+        <div style="--i:4"><img src="./imges/cat4.jpg" alt=""></div>
+        <div style="--i:5"><img src="./imges/cat5.jpg" alt=""></div>
+        <div style="--i:6"><img src="./imges/cat6.jpg" alt=""></div>
+        <div style="--i:7"><img src="./imges/cat7.jpg" alt=""></div>
+        <div style="--i:8"><img src="./imges/cat8.jpg" alt=""></div>
+    </section>
+    <p>猫咪相册</p>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫眼电影-注册</title>
+    <link rel="stylesheet" href="./CSS/normalize.css">
+    <link rel="stylesheet" href="./CSS/indextongyong.css">
+    <link rel="stylesheet" href="./CSS/register.css">
+</head>
+<body>
+    <!-- logo -->
+    <header>
+        <div>
+            <a href="./index.html"><img src="./IMG/logo_s.png" alt=""></a>
+        </div>
+    </header>
+<!-- 注册 -->
+    <section class="reg">
+        <form action="#33">
+            <div class="box box1">
+                <label for="tel">手机号</label><input maxlength="13" type="text" name="tel" id="tel" required>
+                <span class="none">注册成功后，全美团通用</span>
+                <span class="item">请输入您的账号</span>
+            </div>
+
+            <input type="button" value="免费获取短信动态码">
+            <div>
+                <label for="code">短语动态码</label><input type="text" name="code" id="code" required>
+            </div>
+            <div class="box box2">
+                <label for="pwd1">创建密码</label><input maxlength="6" type="password" name="pwd1" id="pwd1" required>
+                <span class="item">请输入六位数密码</span>
+            </div>
+            <!-- 密码强度 -->
+            <span>弱</span><span>中</span><span>强</span>
+            <div class="box box3">
+                <label for="pwd2">确认密码</label><input maxlength="6" type="password" name="pwd2" id="pwd2" required>
+                <span class="item">请再次输入六位数密码</span>
+            </div>
+            <button>同意以下协议并注册</button>
+        </form>
+        <a href="#123">《美团网用户协议》</a>
+    </section>
+    <!-- 底部 -->
+    <footer>
+        <p>
+            <span>meituan.com</span>
+            <span>京ICP证070791号</span>
+            <span>京公安备11010502025545号</span>
+        </p>
+    </footer>
+</body>
+</html>

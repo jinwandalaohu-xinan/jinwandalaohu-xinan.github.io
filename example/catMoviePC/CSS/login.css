@@ -1,0 +1,243 @@
+@charset "UTF-8";
+main {
+  width: 870px;
+  margin: auto;
+  /* logo */
+  /* 注册 */
+}
+
+main header {
+  width: 100%;
+  height: 48px;
+  margin-top: 40px;
+}
+
+main section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 14px;
+}
+
+main section .login {
+  width: 270px;
+  color: #666;
+  margin-left: 115px;
+  margin-top: 80px;
+  /* 登录按钮 */
+}
+
+main section .login .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+main section .login .header i {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background-image: url("../IMG/sprite_webpage.png");
+  background-position: -13px -59px;
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
+}
+
+main section .login .header a {
+  font-size: 12px;
+  color: #666;
+}
+
+main section .login div {
+  position: relative;
+}
+
+main section .login .username span, main section .login .pwd span {
+  position: absolute;
+  padding: 3px 10px;
+  top: 30%;
+  right: -30%;
+  background-color: #e42c31;
+  -webkit-transition: .2s;
+  transition: .2s;
+  opacity: 0;
+  color: #fff;
+}
+
+main section .login .username span::after, main section .login .pwd span::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #e42c31;
+  top: 30%;
+  left: -5px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+main section .login .username input:focus ~ span {
+  right: -50%;
+  opacity: 1;
+}
+
+main section .login .pwd span {
+  right: -40%;
+}
+
+main section .login .pwd input:focus ~ span {
+  right: -65%;
+  opacity: 1;
+}
+
+main section .login input:focus ~ span {
+  right: -50%;
+}
+
+main section .login label {
+  position: absolute;
+  width: 18px;
+  height: 17px;
+  background-image: url("../IMG/login_icon01.png");
+  left: 10px;
+  top: 20px;
+}
+
+main section .login input[type='password'] ~ label {
+  background-image: url("../IMG/login_icon02.png");
+}
+
+main section .login input::-webkit-input-placeholder {
+  color: #a9a9a9;
+}
+
+main section .login input[type='text'], main section .login input[type='password'] {
+  width: 100%;
+  height: 36px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px 10px 10px 34px;
+  border: 1px solid #aaa;
+  margin-top: 10px;
+  outline: none;
+}
+
+main section .login input[type='text'] {
+  margin-bottom: 6px;
+}
+
+main section .login input[type='text']:focus, main section .login input[type='password']:focus {
+  border-color: red;
+}
+
+main section .login form div:nth-of-type(3) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 10px 0 17px;
+}
+
+main section .login form div:nth-of-type(3) p {
+  color: #333;
+}
+
+main section .login form div:nth-of-type(3) a {
+  color: #ec454a;
+}
+
+main section .login button {
+  width: 100%;
+  height: 34px;
+  line-height: 34px;
+  font-weight: 700;
+  padding: 0;
+  border: none;
+  border-radius: 3px;
+  background-color: #e63237;
+  color: #fff;
+}
+
+main section .login > p {
+  margin-top: 11px;
+}
+
+main section .login > p a {
+  color: #ec454a;
+}
+
+/* 弹出 */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 7px 0 rgba(135, 135, 135, 0.5);
+          box-shadow: 0 2px 7px 0 rgba(135, 135, 135, 0.5);
+  background-color: #fff;
+}
+
+.popup span {
+  color: #ec454a;
+}
+
+.popup .head {
+  background-color: #ec454a;
+  color: #Fff;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 5px 0;
+  margin-bottom: 10px;
+}
+
+.popup .content {
+  padding: 10px 20px;
+}
+
+.popup .content .row-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.popup .content .row-1 .icon-gou {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  background: url("../IMG/dagou.png");
+}
+
+.popup .content .btn {
+  display: block;
+  padding: 3px 10px;
+  margin: 30px auto;
+  background-color: #74b9ff;
+  outline: none;
+  border: 2px solid #74b9ff;
+  border-radius: 5px;
+}
+
+.popup .content .btn span {
+  color: #fff;
+}
+
+.popup .content .btn:hover {
+  background-color: #0984e3;
+}
+/*# sourceMappingURL=login.css.map */

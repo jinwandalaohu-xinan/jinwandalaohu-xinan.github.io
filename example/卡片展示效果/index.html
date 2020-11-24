@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>锤石 卡片</title>
+</head>
+<style>
+    html,body{
+        width: 100%;
+        height: 100%;
+    }
+    ul,body{
+        margin: 0;
+        padding: 0;
+    }
+    li{
+        list-style: none;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('./IMG/bj2.jpg');
+        background-size: cover;
+    }
+    article{
+        position: relative;
+        width: 300px;
+        height: 500px;
+        /* background-color: #fff; */
+    }
+    /* 卡片模板 开始 */
+    /* 卡片样式 */
+    .containter{
+        width: 300px;
+        height: 500px;
+        background-color: #fff;
+        position: absolute;
+        text-align: center;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        /* overflow: hidden; */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        transition: all .3s ease-out;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    /* 卡片悬停样式触发 */
+    /* 这里改了高度，也就使在Y上移了50px，也就使整个卡片上移了 */
+    .containter:hover{
+        box-shadow: 0 3px 25px rgba(0, 0, 0, 0.2);
+        height: 600px;
+        /* height: 550px; */
+    }
+
+    /* 图片 */
+    figure{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        position: absolute;
+        /* bottom: -4px; */
+        top: 0px;
+        transition: all .3s ease-out;
+    }
+    .containter span{
+        font-size: 20px;
+        font-weight: 700;
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.5s;
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    }
+    .containter:hover span{
+        opacity: 1;
+    }
+    .containter>figure>img{
+        width: 100%;
+    }
+
+    
+    
+    /* 技能图标 开始 */
+    .containter>ul{
+        display: flex;
+        justify-content: space-evenly;
+        position: relative;
+        /* top: 100%; */
+    }
+    
+    .containter>ul li >a{
+        display: inline-block;
+        width: 55px;
+        height: 55px;
+        background-image: url('./IMG/icon.jpg');
+        background-position: 0 -2px;
+        transition: all 0.5s 0.1s;
+        opacity: 0;
+    }
+    /* 技能图标过度 */
+    .containter>ul li:nth-child(2) >a{
+        background-position: -76px -2px;
+        transition-delay: .1s;
+    }
+    .containter>ul li:nth-child(3) >a{
+        background-position: -152px -2px;
+        transition-delay: .2s;
+    }
+    .containter>ul li:nth-child(4) >a{
+        background-position: -76px -127px;
+        transition-delay: .3s;
+    }
+    .containter:hover>ul li >a{
+        transform: translateY(-150px);
+        opacity: 1;
+    }
+    /* 技能图标 开始 */
+    /* 卡片模板 结束 */
+/* 百分比数字值，使Y轴位值向上移动了50px， */
+    .containter:hover+.red,article:hover .red{
+        transform: translate(300px,-50%);
+    }
+    .containter:hover~.green,article:hover .green{
+        transform: translate(-600px,-50%);
+    }
+    
+    article>div:nth-of-type(1){
+        z-index: 1;
+    }
+    article:hover{
+        width: 1200px;
+        height: 600px;
+    }
+   
+
+    
+    
+</style>
+<body>
+    <article>
+        <!-- 中间 -->
+        <div class="containter">
+            <figure>
+                <img src="./IMG/thresh.jpg" alt="">
+            </figure>
+            <span>Thresh,the Chain Warden</span>
+            <ul>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+            </ul>
+        </div>
+        <!-- 左边 -->
+        <div class="containter red">
+            <figure>
+                <img src="./IMG/thresh2.jpg" alt="">
+            </figure>
+            <span>Thresh,the Chain Warden</span>
+            <ul>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+            </ul>
+        </div>
+        <!-- 右边 -->
+        <div class="containter green">
+            <figure>
+                <img src="./IMG/thresh4.jpg" alt="">
+            </figure>
+            <span>Thresh,the Chain Warden</span>
+            <ul>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+            </ul>
+        </div>
+    </article>
+    
+</body>
+</html>

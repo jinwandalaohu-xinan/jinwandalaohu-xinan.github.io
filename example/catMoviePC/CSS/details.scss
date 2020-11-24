@@ -1,0 +1,551 @@
+/* 电影简介 */
+.movie {
+    background-image: url("../IMG/banner_bg.f7fd103e3b8c16b6f449cce43fc57f45.png");
+    height: 376px;
+
+    .container {
+        width: 1140px;
+        padding: 0 30px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+
+        /* 电影名片 */
+        figure {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            top: 80px;
+            z-index: 1;
+
+            figcaption {
+                margin-top: 25px;
+                color: #fff2d5;
+                margin-left: 30px;
+
+                h1 {
+                    color: #fff;
+                    font-size: 26px;
+                }
+
+                p {
+                    margin-bottom: 10px;
+                }
+
+                p:nth-of-type(1) {
+                    margin-bottom: 15px;
+                }
+
+                p:nth-of-type(4) {
+                    margin-bottom: 30px;
+                }
+
+                /* 按钮 */
+                span {
+                    display: inline-block;
+                    width: 120px;
+                    height: 36px;
+                    text-align: center;
+                    line-height: 36px;
+                    margin-right: 10px;
+                    background-color: #756189;
+                    cursor: pointer;
+                }
+
+                i {
+                    display: inline-block;
+                    width: 16px;
+                    height: 14px;
+                    background-image: url("../IMG/sprite_webpage.png");
+                    background-position: -74px -60px;
+                }
+
+                span:nth-of-type(2) i {
+                    background-position: -95px -60px;
+                }
+
+
+
+            }
+        }
+
+        /* // 买票 */
+        &>div {
+            margin-top: 160px;
+
+            /* 评分 */
+            ul {
+                margin-bottom: 20px;
+                width: 334px;
+                display: flex;
+                justify-content: space-between;
+
+                li {
+                    width: 100px;
+                    height: 80px;
+                    border: 1px solid #5b526f;
+                    text-align: center;
+                    background-color: #302649;
+
+                    span:nth-child(1) {
+                        display: block;
+                        padding: 2px 3px;
+                        background-color: #df2d2d;
+                        font-size: 12px;
+                        color: #fff;
+                        font-weight: bolder;
+                        width: 60px;
+                        height: 20px;
+                        box-sizing: border-box;
+                        line-height: 16px;
+                        position: relative;
+                        top: -5px;
+                        left: 20px;
+                    }
+
+                    span:nth-child(2) {
+                        color: #ffc600;
+                    }
+
+                    p {
+                        color: #cbc9d1;
+                        font-size: 12px;
+                        margin-top: 10px;
+                    }
+                }
+            }
+
+            /*    购买按钮 */
+            a {
+                display: block;
+                width: 100%;
+                height: 50px;
+                color: #df2d2d;
+                font-weight: bold;
+                text-align: center;
+                line-height: 50px;
+                // background-color: #df2d2d;
+                transform: perspective(300px);
+                transform-style: preserve-3d;
+                transition: all .5s;
+                border-radius: 5px;
+                background: #403261;
+                box-shadow: 15px 15px 40px #362b52,
+                            -10px -10px 20px #4a3a70;
+
+                &:hover {
+                    color: #fff;
+                    transform: rotateY(-10deg);
+                    background: #df2d2d;
+                    box-shadow: inset 15px 15px 40px #be2626,
+                        inset -10px -10px 20px #ff3434;
+                }
+            }
+        }
+
+    }
+}
+
+/* 主体 详情 */
+main {
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    top: -30px;
+    background-color: #fff;
+    padding-top: 110px;
+    display: flex;
+
+    &>i {
+        position: absolute;
+        width: 2px;
+        height: 80px;
+        background-image: linear-gradient(to bottom, #e7e7e7, transparent);
+        top: 30px;
+        left: -2px;
+    }
+
+    &>i:nth-child(2) {
+        left: 1200px;
+    }
+
+    /* 左边  电影详情 */
+    .movieDetails {
+        width: 730px;
+
+        /* 导航 */
+        nav {
+            position: relative;
+
+            ul {
+                width: 100%;
+                display: flex;
+                border-bottom: 2px solid #eeeeee;
+                font-size: 18px;
+
+                li {
+                    margin-right: 30px;
+
+                    a {
+                        display: inline-block;
+                        height: 30px;
+                        line-height: 30px;
+                        position: relative;
+                    }
+                }
+
+                li:nth-child(3) a {
+                    color: #999;
+                    pointer-events: none;
+                }
+
+                #marker {
+                    position: absolute;
+                    left: 0;
+                    width: 36px;
+                    height: 2px;
+                    background-color: #ef4238;
+                    bottom: 0;
+                    transition: all .5s;
+                }
+            }
+        }
+
+        /* 剧情简介 */
+        .jq {
+            margin-top: 43px;
+            height: 230px;
+
+            h2 {
+                font-weight: normal;
+                font-size: 18px;
+                border-left: 3px solid #ef4238;
+                padding-left: 10px;
+                margin-bottom: 20px;
+            }
+
+            p {
+                font-size: 14px;
+                line-height: 26px;
+            }
+        }
+
+        /* 演职人员 */
+        .yanyuan {
+            margin-top: 43px;
+
+            h2 {
+                font-weight: normal;
+                font-size: 18px;
+                border-left: 3px solid #ef4238;
+                padding-left: 10px;
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: space-between;
+
+                a {
+                    font-size: 14px;
+                    color: #999;
+                }
+            }
+
+            &>div {
+                display: flex;
+
+                /* 导演 */
+                .daoyan {
+                    &>p {
+                        text-align: left;
+                    }
+
+                    font-size: 16px;
+                    text-align: center;
+                    margin-right: 30px;
+
+                    img {
+                        margin: 18px 0;
+                    }
+                }
+
+                /* 演员 */
+                .yanyuans {
+                    ul {
+                        display: flex;
+
+                        li {
+                            &:not(:first-child) {
+                                margin-left: 20px;
+                            }
+
+                            figure {
+                                font-size: 16px;
+                                text-align: center;
+
+                                img {
+                                    margin: 18px 0;
+                                }
+
+                                span {
+                                    font-size: 14px;
+                                    color: #999;
+                                    margin-top: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        /* 图集 */
+        .photo {
+            margin-top: 42px;
+
+            h2 {
+                font-weight: normal;
+                font-size: 18px;
+                border-left: 3px solid #ef4238;
+                padding-left: 10px;
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                a {
+                    font-size: 14px;
+                    color: #999;
+                }
+            }
+
+            &>img {
+                margin-right: 6px;
+            }
+
+            div {
+                display: flex;
+
+                ul {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-content: space-between;
+                    justify-content: space-evenly;
+
+                   
+                }
+            }
+        }
+
+        /* 评论 */
+        .comment {
+            margin-top: 60px;
+
+            input {
+                width: 80%;
+                height: 0px;
+                outline: none;
+                border: none;
+                margin-left: 30px;
+                color: #df2d2d;
+                font-size: 16px;
+                // border-radius: 15px;
+                box-sizing: border-box;
+                padding: 0 20px;
+                transition: .3s;
+                &:focus,&:valid{
+                    height: 31px;
+                    border: 1px solid red;
+                }
+                &:focus ~ .buplish,&:valid ~ .buplish{
+                    opacity: 1;
+                    visibility: visible;
+                }
+                
+            }
+
+            .buplish {
+                display: inline-block;
+                width: 50px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                color: red;
+                border: 1px solid red;
+                border-radius: 15px;
+                margin-left: 55px;
+                // margin-top: 20px;
+                cursor: pointer;
+                opacity: 0;
+                visibility: hidden;
+                transition: .3s;
+            }
+
+            h2 {
+                font-weight: normal;
+                font-size: 18px;
+                border-left: 3px solid #ef4238;
+                padding-left: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 20px;
+
+                a {
+                    display: inline-block;
+                    width: 62px;
+                    height: 30px;
+                    line-height: 30px;
+                    text-align: center;
+                    color: red;
+                    border: 1px solid red;
+                    border-radius: 15px;
+                    label{
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            /* 个个评论 */
+            .item {
+                position: relative;
+                display: flex;
+                padding-top: 20px;
+
+                &>img {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    margin-right: 20px;
+                }
+
+                &>i {
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                    background-image: url("../IMG/v4.png");
+                    top: 50px;
+                    left: 30px;
+                }
+
+                .commentText {
+                    padding: 0px 0 30px;
+                    border-bottom: 1px solid #e5e5e5;
+
+                    p:nth-of-type(2) {
+                        display: flex;
+                        color: #999;
+
+                        i {
+                            display: inline-block;
+                            width: 96px;
+                            height: 16px;
+                            background-image: url("../IMG/star_icon01.png");
+                        }
+
+                        span {
+                            flex-grow: 1;
+                            text-align: right;
+
+                            i {
+                                width: 16px;
+                                height: 16px;
+                                background-image: url("../IMG/icon_08.png");
+
+
+                            }
+                        }
+
+                    }
+
+                    p:nth-of-type(3) {
+                        line-height: 26px;
+                        margin-top: 25px;
+                    }
+                }
+            }
+
+        }
+    }
+
+
+    /* 右边 侧边栏 */
+    .aside {
+        width: 360px;
+        margin-left: 110px;
+
+        /* 相关资讯 */
+        .asideItmes1 {
+            h2 {
+                font-weight: normal;
+                font-size: 18px;
+                border-left: 3px solid #ef4238;
+                padding-left: 10px;
+                margin-bottom: 20px;
+            }
+
+            figure {
+                display: flex;
+                margin-bottom: 15px;
+
+                figcaption {
+                    margin-left: 10px;
+
+                    p:nth-child(2) {
+                        font-size: 14px;
+                        color: #999;
+                        margin-top: 20px;
+                        display: flex;
+                        align-items: center;
+
+                        span {
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* 电影资讯 */
+        .asideItmes2 {
+            margin-top: 55px;
+
+            h2 {
+                font-weight: normal;
+                font-size: 18px;
+                border-left: 3px solid #ef4238;
+                padding-left: 10px;
+                margin-bottom: 20px;
+            }
+
+            div {
+                display: flex;
+                flex-wrap: wrap;
+
+                figure {
+                    &:not(:nth-child(3n)) {
+                        margin-right: 20px;
+                    }
+
+                    text-align: center;
+                    font-size: 14px;
+
+                    p:nth-of-type(1) {
+                        margin: 10px 0 15px;
+                    }
+
+                    p:nth-of-type(2) {
+                        color: #ffc600;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+
+/* 页面底部 */
+footer {
+    margin-top: 120px;
+}

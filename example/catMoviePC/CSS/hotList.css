@@ -1,0 +1,375 @@
+@charset "UTF-8";
+/* 页面头部 */
+header {
+  width: 1200px;
+  height: 80px;
+  margin: auto;
+  border-bottom: 1px solid #d8d8d8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /* 城市 */
+  /* // 导航 */
+}
+
+header .place span {
+  font-size: 16px;
+  vertical-align: baseline;
+  margin-left: 15px;
+  font-weight: bolder;
+}
+
+header .place span::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top: 5px solid #000;
+  position: relative;
+  top: 3px;
+  left: 5px;
+  -webkit-transform-origin: 50% 25%;
+          transform-origin: 50% 25%;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+header .place span:hover::after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+header ul {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header ul li a {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  font-weight: bolder;
+}
+
+header ul li:nth-child(3) {
+  background-color: #ef4238;
+}
+
+header ul li:nth-child(3) a {
+  color: #fff;
+}
+
+header ul li:not(:nth-child(3)):hover a {
+  color: #ef4238;
+}
+
+header div:nth-child(4) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  /* 我的 */
+  /*        搜索框 */
+}
+
+header div:nth-child(4) div {
+  position: relative;
+  /* 登录 */
+}
+
+header div:nth-child(4) div img {
+  position: relative;
+  z-index: 6;
+}
+
+header div:nth-child(4) div::after {
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top: 5px solid #000;
+  position: relative;
+  top: -15px;
+  left: 5px;
+  -webkit-transform-origin: 50% 25%;
+          transform-origin: 50% 25%;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  z-index: 6;
+}
+
+header div:nth-child(4) div:hover::after {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+header div:nth-child(4) div span {
+  display: none;
+  width: 100%;
+  padding: 0 10px;
+  height: 150px;
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  text-align: center;
+  z-index: 5;
+  overflow: hidden;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+}
+
+header div:nth-child(4) div span a {
+  margin-top: 100px;
+  display: inline-block;
+}
+
+header div:nth-child(4) div span a:hover {
+  color: #ffb83f;
+}
+
+header div:nth-child(4) div:hover span {
+  display: inline-block;
+}
+
+header div:nth-child(4) input {
+  width: 190px;
+  height: 38px;
+  border: 1px solid #ccc;
+  border-radius: 19px;
+  padding: 0 20px;
+  padding-right: 50px;
+  outline: none;
+  margin-right: 20px;
+}
+
+header div:nth-child(4) i {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-image: url("../IMG/sprite_webpage.png");
+  left: 225px;
+}
+
+/* 页面主体 */
+main .topNav {
+  width: 100%;
+  background-color: #000;
+  position: relative;
+  /* 导航 */
+  /* 点击后显示 */
+  /* 点击后li背景变化 */
+  /* 点击改变字体颜色 */
+}
+
+main .topNav input {
+  display: none;
+}
+
+main .topNav #box1:checked ~ ul .first .main,
+main .topNav #box2:checked ~ ul .second .main,
+main .topNav #box3:checked ~ ul .third .main,
+main .topNav #box4:checked ~ ul .fourth .main,
+main .topNav #box5:checked ~ ul .fifth .main {
+  opacity: 1;
+  visibility: visible;
+}
+
+main .topNav #box1:checked ~ ul .first label,
+main .topNav #box2:checked ~ ul .second label,
+main .topNav #box3:checked ~ ul .third label,
+main .topNav #box4:checked ~ ul .fourth label,
+main .topNav #box5:checked ~ ul .fifth label {
+  color: #fff;
+}
+
+main .topNav nav > ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 1200px;
+  height: 60px;
+  margin: 0 auto;
+  position: relative;
+  /* 指示器 */
+  /* 电影榜单 */
+  /* 热映榜 */
+}
+
+main .topNav nav > ul .pointer {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+  bottom: -10px;
+  left: 112px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  z-index: 4;
+  pointer-events: none;
+}
+
+main .topNav nav > ul .pointer2 {
+  position: absolute;
+  width: 240px;
+  height: 60px;
+  background-color: #ef4238;
+  left: 0px;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  z-index: 1;
+}
+
+main .topNav nav > ul > li {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  color: #999;
+  text-align: center;
+  line-height: 60px;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+main .topNav nav > ul > li > label {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+main .topNav nav > ul > li:hover > label {
+  color: #fff;
+}
+
+main .topNav nav > ul li > div.main {
+  font-size: 0;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  padding: 70px 125px 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  line-height: normal;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  /* 时间 */
+  /* 电影信息 */
+}
+
+main .topNav nav > ul li > div.main > p {
+  font-size: 12px;
+  color: #9f9f9f;
+}
+
+main .topNav nav > ul li > div.main > p span {
+  color: #ffb83f;
+}
+
+main .topNav nav > ul li > div.main > ul {
+  margin-top: 40px;
+  /* 图标 */
+  /* 电影信息 */
+}
+
+main .topNav nav > ul li > div.main > ul li {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+main .topNav nav > ul li > div.main > ul i {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: 0;
+  top: 85px;
+  background-color: #f7f7f7;
+  text-align: center;
+  line-height: 50px;
+  font-size: 24px;
+  font-weight: bolder;
+  color: #999;
+}
+
+main .topNav nav > ul li > div.main > ul figure {
+  margin-left: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .topNav nav > ul li > div.main > ul figure figcaption {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  padding: 66px 0;
+  display: block;
+  text-align: left;
+  margin-left: 30px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+main .topNav nav > ul li > div.main > ul figure figcaption div {
+  display: inline-block;
+}
+
+main .topNav nav > ul li > div.main > ul figure figcaption div:nth-child(1) {
+  margin-right: 390px;
+}
+
+main .topNav nav > ul li > div.main > ul figure figcaption h1 {
+  font-size: 22px;
+  color: #000;
+  margin-bottom: 15px;
+  font-weight: normal;
+}
+
+main .topNav nav > ul li > div.main > ul figure figcaption h1 a {
+  color: #000;
+}
+
+main .topNav nav > ul li > div.main > ul figure figcaption p {
+  font-size: 16px;
+  color: #999;
+}
+
+main .topNav nav > ul li > div.main > ul figure figcaption div:last-child {
+  font-size: 20px;
+  color: #ffb83f;
+  font-style: italic;
+  font-weight: bolder;
+}
+
+main .topNav nav > ul li > div.main > ul figure figcaption div:last-child span {
+  font-size: 46px;
+}
+
+/* 页面底部 */
+footer {
+  margin-top: 2795px;
+}
+/*# sourceMappingURL=hotList.css.map */

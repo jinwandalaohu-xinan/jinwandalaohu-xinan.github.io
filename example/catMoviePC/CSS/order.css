@@ -1,0 +1,154 @@
+@charset "UTF-8";
+.main-order {
+  width: 1162px;
+  min-height: 800px;
+  border: 1px solid #e1e1e1;
+  margin: 30px auto 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main-order .my-center {
+  width: 200px;
+  background-color: #f4f3f4;
+  border-right: 1px solid #e1e1e1;
+  margin-right: 39px;
+}
+
+.main-order .my-center > div {
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  color: #222;
+  font-size: 20px;
+}
+
+.main-order .my-center .select li > a {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+
+.main-order .my-orders {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.main-order .my-orders .head {
+  padding: 30px 0;
+  color: #ec443f;
+  font-size: 18px;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.main-order .my-orders .order-list {
+  /* 翻页 */
+}
+
+.main-order .my-orders .order-list .order-item {
+  width: 880px;
+  height: 186px;
+  border: 1px solid #e1e1e1;
+}
+
+.main-order .my-orders .order-list .order-item .top {
+  padding: 18px 20px;
+  background-color: #f4f3f4;
+}
+
+.main-order .my-orders .order-list .order-item .top .order-num {
+  color: #999;
+  margin-left: 35px;
+}
+
+.main-order .my-orders .order-list .order-item .order-content {
+  width: 840px;
+  height: 100px;
+  padding: 0 20px;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-order .my-orders .order-list .order-item .order-content .order-movie figure {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main-order .my-orders .order-list .order-item .order-content .order-movie figure img {
+  border: 2px solid #fff;
+}
+
+.main-order .my-orders .order-list .order-item .order-content .order-movie figure figcaption {
+  margin-left: 15px;
+}
+
+.main-order .my-orders .order-list .order-item .order-content .order-movie figure figcaption span {
+  display: block;
+  color: #999;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.main-order .my-orders .order-list .order-item .order-content .order-movie figure figcaption .time {
+  color: #ec443f;
+}
+
+.main-order .my-orders .order-list .order-item .order-content .order-state {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.main-order .my-orders .order-list .order-item .order-content .order-state .order-price::before {
+  content: "￥";
+}
+
+.main-order .my-orders .order-list .order-item .order-content .order-state .state {
+  margin-left: 78px;
+}
+
+.main-order .my-orders .order-list .order-item .order-content .order-state a {
+  margin-left: 112px;
+}
+
+.main-order .my-orders .order-list .next {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 25px auto 0;
+}
+
+.main-order .my-orders .order-list .next a {
+  display: inline-block;
+  padding: 8px 13px;
+  font-size: 12px;
+  border: 1px solid #d8d8d8;
+  margin-right: 10px;
+}
+
+.main-order .my-orders .order-list .next a:first-child {
+  color: #fff;
+  background-color: red;
+  border-color: red;
+}
+
+.main-order .my-orders .order-list .next a:hover:not(:first-child) {
+  color: #fff;
+  background-color: red;
+  border-color: red;
+}
+/*# sourceMappingURL=order.css.map */

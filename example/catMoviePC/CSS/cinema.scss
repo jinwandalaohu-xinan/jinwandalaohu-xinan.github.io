@@ -1,0 +1,236 @@
+.movie-cinema {
+    background-image: url("../IMG/banner_bg.f7fd103e3b8c16b6f449cce43fc57f45.png");
+    height: 376px;
+
+    .container {
+        width: 1140px;
+        padding: 0 30px;
+        margin: 0 auto;
+        display: flex;
+
+        /* 电影名片 */
+        figure {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            top: 50px;
+            z-index: 1;
+
+            figcaption {
+                margin-top: 25px;
+                color: #fff2d5;
+                margin-left: 30px;
+
+                h1 {
+                    color: #fff;
+                    font-size: 26px;
+                }
+
+                p {
+                    margin-bottom: 10px;
+                }
+
+                p:nth-of-type(1) {
+                    margin-bottom: 15px;
+                }
+
+                p:nth-of-type(4) {
+                    margin-bottom: 30px;
+                }
+
+                /* 按钮 */
+                span {
+                    display: inline-block;
+                    width: 120px;
+                    height: 36px;
+                    text-align: center;
+                    line-height: 36px;
+                    margin-right: 10px;
+                    background-color: #756189;
+                    cursor: pointer;
+                }
+
+                i {
+                    display: inline-block;
+                    width: 16px;
+                    height: 14px;
+                    background-image: url("../IMG/sprite_webpage.png");
+                    background-position: -74px -60px;
+                }
+
+                span:nth-of-type(2) i {
+                    background-position: -95px -60px;
+                }
+                .more-details{
+                    width: 250px;
+                    margin-top: 10px;
+                    a{
+                        display: block;
+                        height: 40px;
+                        line-height: 40px;
+                        text-align: center;
+                        color: #fff;
+                        background-color: #df2d2d;
+                        border-radius: 3px;
+                    }
+                }
+
+
+            }
+        }
+
+        /* 评分 */
+        .appraise{
+            margin-left: 90px;
+            margin-top: 210px;
+            color: #fff;
+            .s{
+                font-size: 12px;
+            }
+            .top{
+                margin-top: 5px;
+                margin-bottom: 10px;
+                &>div{
+                    display: flex;
+                }
+                .l{
+                    display: inline-block;
+                    margin-right: 20px;
+                    font-size: 26px;
+                    color: #ffc61c;
+                }
+            }
+            .bottom{
+                .box-office{
+                    margin-top: 5px;
+                    font-size: 26px;
+                    span{
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* 筛选 条件 */
+.select-cinema{
+    width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px;
+    border: 1px solid #e5e5e5;
+    margin-top: 40px;
+    &>ul{
+        font-size: 14px;
+        li{
+            padding: 10px 0;
+            position: relative;
+            border-bottom: 1px dashed #e5e5e5;
+            div{
+                height: 24px;
+                line-height: 24px;
+                float: left;
+                color: #999;
+                font-size: 14px;
+                
+            }
+            &>ul{
+                &>.first{
+                    background-color: red;
+                    a{
+                        color: #fff;
+                    }
+                }
+                margin-left: 40px;
+                overflow: hidden;
+                li{
+                    padding: 3px 9px;
+                    border-radius: 14px;
+                    display: inline-block;
+                    margin-left: 12px;
+                    
+                }
+                li:hover:not(:first-child) a{
+                    color:red;
+                }
+            }
+        }
+    }
+}
+
+/* 影院列表 */
+.main-cinema{
+    width: 1120px;
+    margin: 0 auto;
+    margin-top: 40px;
+    h3{
+        font-size: 18px;
+        border-left: 5px solid #f03d37;
+        padding-left: 5px;
+    }
+    &>ul{
+        li{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 0;
+            border-bottom: 1px dashed #e5e5e5;
+            .left{
+                .title{
+                    &:hover{
+                        color: #f03d37;
+                    }
+                }
+                .address{
+                    color: #999;
+                    margin-top: 10px;
+                }
+            }
+            .right{
+                span{
+                    color: #f03d37;
+                    font-weight: 700;
+                    margin-right: 35px;
+                    i{
+                        font-style: normal;
+                        font-weight: normal;
+                    }
+                }
+                .pay{
+                    color: #fff;
+                    display: inline-block;
+                    padding: 10px 15px;
+                    border-radius: 20px;
+                    background-color: #f03d37;
+                    box-shadow: 0 0 15px 2px #f03d37;
+                }
+            }
+        }
+    }
+
+    /* 翻页 */
+    .next{
+        display: flex;
+        width: 434px;
+        justify-content: space-between;
+        margin: 25px auto 0;
+        a{
+            display: inline-block;
+            padding: 8px 13px;
+            font-size: 12px;
+            border: 1px solid #d8d8d8;
+            &:first-child{
+                color: #fff;
+                background-color: red;
+                border-color: red;
+            }
+            &:hover:not(:first-child){
+                color: #fff;
+                background-color: red;
+                border-color: red;
+            }
+        }
+        
+    }
+
+}

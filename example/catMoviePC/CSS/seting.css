@@ -1,0 +1,152 @@
+@charset "UTF-8";
+.seating-state {
+  height: 140px;
+}
+
+.main-seating {
+  width: 1200px;
+  height: 669px;
+  margin: 0 auto;
+  border: 1px solid #e5e5e5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main-seating .seating-list {
+  width: 820px;
+}
+
+.main-seating .seating-list .seat {
+  padding-top: 30px;
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.main-seating .seating-list .seat span {
+  margin-right: 50px;
+}
+
+.main-seating .seating-list .seat img {
+  width: 32px;
+  vertical-align: middle;
+}
+
+.main-seating .seating-list .list .screen div {
+  height: 45px;
+}
+
+.main-seating .seating-list .list .screen p {
+  text-align: center;
+}
+
+.main-seating .seating-list .list .list-seat {
+  padding-top: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main-seating .seating-list .list .list-seat .list-num {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 15px;
+  margin-right: 40px;
+}
+
+.main-seating .seating-list .list .list-seat .list-num span {
+  margin-bottom: 10px;
+}
+
+.main-seating .seating-list .list .list-seat-group {
+  border: solid 1px red;
+  min-width: 600px;
+}
+
+.main-seating .seating-movie {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background-color: #f9f9f9;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 20px;
+}
+
+.main-seating .seating-movie .movie-infor p {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.main-seating .seating-movie .movie-infor span {
+  color: #999;
+  font-weight: normal;
+}
+
+.main-seating .seating-movie .movie-infor figure {
+  height: 166px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.main-seating .seating-movie .movie-infor figure figcaption {
+  margin-left: 20px;
+}
+
+.main-seating .seating-movie .movie-infor figure figcaption p {
+  margin-bottom: 5px;
+}
+
+.main-seating .seating-movie .select-seat {
+  height: 166px;
+  overflow: hidden;
+  border-top: 1px dashed #e5e5e5;
+  border-bottom: 1px dashed #e5e5e5;
+  font-size: 14px;
+}
+
+.main-seating .seating-movie .select-seat p {
+  padding-top: 20px;
+  color: #999;
+}
+
+.main-seating .seating-movie .select-seat .hint {
+  text-align: center;
+  padding: 35px 0 45px 0;
+}
+
+.main-seating .seating-movie .select-seat .sum span {
+  font-weight: 700;
+  color: #f03d37;
+  font-size: 18px;
+}
+
+.main-seating .seating-movie .select-seat .sum span::before {
+  content: "￥";
+  font-size: 12px;
+}
+
+.main-seating .seating-movie .confirm .phone {
+  text-align: center;
+  padding: 23px 0 40px 0;
+}
+
+.main-seating .seating-movie .confirm .confirm-btn {
+  display: block;
+  width: 260px;
+  height: 42px;
+  color: #fff;
+  line-height: 42px;
+  text-align: center;
+  background-color: #dedede;
+  border-radius: 21px;
+  margin: 0 auto;
+}
+/*# sourceMappingURL=seting.css.map */

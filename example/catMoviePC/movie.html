@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫眼电影-电影</title>
+    <link rel="stylesheet" href="./CSS/normalize.css">
+    <link rel="stylesheet" href="./CSS/indextongyong.css">
+    <link rel="stylesheet" href="./CSS/headerFooter.css">
+    <link rel="stylesheet" href="./CSS/movie.css">
+</head>
+<body>
+    <!-- 页面头部 -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="./index.html"><img src="./IMG/logo_s.png" alt=""></a>
+            </div>
+            <div class="place"><span>成都</span></div>
+            <ul>
+                <li><a href="./index.html">首页</a></li>
+                <li><a href="./movie.html">电影</a></li>
+                <li><a href="./hotList.html">榜单</a></li>
+                <li><a href="./infor.html">热点</a></li>
+            </ul>
+            <div>
+                <input type="text" placeholder="找影视剧、影人、影院">
+                <i></i>
+                <div>
+                    <img src="./IMG/7dd82a16316ab32c8359debdb04396ef2897.png" alt="">
+                    <span><a href="./login.html">登录</a></span>
+                </div>
+            </div>
+        </div>
+        
+    </header>
+
+    <nav class="topNav">
+        <ul id="topNav">
+            <li><span>正在热映</span></li>
+            <li><span>即将上映</span></li>
+            <li><span>经典影片</span></li>
+            <i id="marker"></i>
+        </ul>
+    </nav>
+    <script>
+        var marker = document.querySelector('#marker');
+        var item = document.querySelectorAll('#topNav li');
+
+        function indicator(e) {
+            marker.style.left = (e.offsetLeft+65) + "px";
+            
+        }
+
+        item.forEach(link => {
+            link.addEventListener('mouseenter', (e) => {
+                indicator(e.target);
+            })
+        });
+    </script>
+
+    <!-- 主体 -->
+    
+    <main>
+        <!-- 分类  条件-->
+        <section class="condition">
+            <ul>
+                <li>
+                    <div>类型：</div>
+                    <ul>
+                        <li class="first"><a href="#01">全部</a></li>
+                        <li><a href="#02">爱情</a></li>
+                        <li><a href="#03">喜剧</a></li>
+                        <li><a href="#04">动画</a></li>
+                        <li><a href="#05">剧情</a></li>
+                        <li><a href="#06">恐怖</a></li>
+                        <li><a href="#07">惊悚</a></li>
+                        <li><a href="#08">科幻</a></li>
+                        <li><a href="#09">动作</a></li>
+                        <li><a href="#10">悬疑</a></li>
+                        <li><a href="#11">犯罪</a></li>
+                        <li><a href="#12">冒险</a></li>
+                        <li><a href="#13">战争</a></li>
+                        <li><a href="#14">奇幻</a></li>
+                        <li><a href="#15">运动</a></li>
+                        <li><a href="#16">家庭</a></li>
+                        <li><a href="#17">古装</a></li>
+                        <li><a href="#18">武侠</a></li>
+                        <li><a href="#19">西部</a></li>
+                        <li><a href="#20">历史</a></li>
+                        <li><a href="#21">传记</a></li>
+                        <li><a href="#22">情色</a></li>
+                        <li><a href="#23">歌舞</a></li>
+                        <li><a href="#24">黑色电影</a></li>
+                        <li><a href="#25">短片</a></li>
+                        <li><a href="#26">纪录片</a></li>
+                        <li><a href="#27">其他</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div>区域：</div>
+                    <ul>
+                        <li class="first"><a href="31" >全部</a></li>
+                        <li><a href="32">大陆</a></li>
+                        <li><a href="33">美国</a></li>
+                        <li><a href="34">韩国</a></li>
+                        <li><a href="35">日本</a></li>
+                        <li><a href="36">中国香港</a></li>
+                        <li><a href="37">中国台湾</a></li>
+                        <li><a href="38">泰国</a></li>
+                        <li><a href="39">印度</a></li>
+                        <li><a href="310">法国</a></li>
+                        <li><a href="311">英国</a></li>
+                        <li><a href="312">俄罗斯</a></li>
+                        <li><a href="313">意大利</a></li>
+                        <li><a href="314">西班牙</a></li>
+                        <li><a href="315">德国</a></li>
+                        <li><a href="316">波兰</a></li>
+                        <li><a href="317">澳大利亚</a></li>
+                        <li><a href="318">伊朗</a></li>
+                        <li><a href="319">其他</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <div>年代：</div>
+                    <ul>
+                        <li class="first"><a href="41">全部</a></li>
+                        <li><a href="42">2017以后</a></li>
+                        <li><a href="43">2017</a></li>
+                        <li><a href="44">2016</a></li>
+                        <li><a href="45">2015</a></li>
+                        <li><a href="46">2014</a></li>
+                        <li><a href="47">2013</a></li>
+                        <li><a href="48">2012</a></li>
+                        <li><a href="49">2011</a></li>
+                        <li><a href="410">2000-2010</a></li>
+                        <li><a href="411">90年代</a></li>
+                        <li><a href="412">80年代</a></li>
+                        <li><a href="413">70年代</a></li>
+                        <li><a href="414">更早</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- 电影网格 -->
+        <section class="movieGird">
+            <!-- 排序 -->
+            <input type="radio" name="paixu" id="box1" checked>
+            <input type="radio" name="paixu" id="box2">
+            <input type="radio" name="paixu" id="box3">
+            <div class="order">
+                <ul>
+                    <li>
+                        
+                        <label for="box1">按热门排序</label>
+                        <i></i>
+                    </li>
+                    <li>
+                        
+                        <label for="box2">按时间排序</label>
+                        <i></i>
+                    </li>
+                    <li>
+                        
+                        <label for="box3">按评分排序</label>
+                        <i></i>
+                    </li>
+                </ul>
+                
+            </div>
+
+            <ul class="grid">
+               
+                <li class="number2 number">
+                    <a href="#50">
+                        <figure>
+                            <img src="./IMG/dianying1.jpg" alt="">
+                            <figcaption>
+                                <p>反贪风暴2</p>
+                                <i>8.3</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li class="number2 ">
+                    <a href="#51">
+                        <figure>
+                            <img src="./IMG/dianying2.jpg" alt="">
+                            <figcaption>
+                                <p>使徒行者</p>
+                                <i>8.9</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li class="number2 number">
+                    <a href="#52">
+                        <figure>
+                            <img src="./IMG/dianying3.jpg" alt="">
+                            <figcaption>
+                                <p>盗墓笔记</p>
+                                <i>8.0</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li class="number">
+                    <a href="#53">
+                        <figure>
+                            <img src="./IMG/dianying4.jpg" alt="">
+                            <figcaption>
+                                <p>魔兽</p>
+                                <i>9.0</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#54">
+                        <figure>
+                            <img src="./IMG/dianying5.jpg" alt="">
+                            <figcaption>
+                                <p>美人鱼</p>
+                                <i>9.0</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#55">
+                        <figure>
+                            <img src="./IMG/dianying6.jpg" alt="">
+                            <figcaption>
+                                <p>绝地逃亡</p>
+                                <i>8.5</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li class="number">
+                    <a href="#56">
+                        <figure>
+                            <img src="./IMG/dianying7.jpg" alt="">
+                            <figcaption>
+                                <p>追凶者也</p>
+                                <i>8.5</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#57">
+                        <figure>
+                            <img src="./IMG/dianying8.jpg" alt="">
+                            <figcaption>
+                                <p>九条命</p>
+                                <i>8.7</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li class="number">
+                    <a href="#58">
+                        <figure>
+                            <img src="./IMG/dianying9.jpg" alt="">
+                            <figcaption>
+                                <p>自杀小队</p>
+                                <i>9.0</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li class="number2">
+                    <a href="#59">
+                        <figure>
+                            <img src="./IMG/dianying10.jpg" alt="">
+                            <figcaption>
+                                <p>微微一笑很倾城</p>
+                                <i>8.4</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#60">
+                        <figure>
+                            <img src="./IMG/dianying11.jpg" alt="">
+                            <figcaption>
+                                <p>大鱼海棠</p>
+                                <i>8.4</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#61">
+                        <figure>
+                            <img src="./IMG/dianying12.jpg" alt="">
+                            <figcaption>
+                                <p>谍影重重</p>
+                                <i>8.3</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#62">
+                        <figure>
+                            <img src="./IMG/dianying13.jpg" alt="">
+                            <figcaption>
+                                <p>寒战2</p>
+                                <i>8.6</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#63">
+                        <figure>
+                            <img src="./IMG/dianying14.jpg" alt="">
+                            <figcaption>
+                                <p>美国队长3</p>
+                                <i>8.6</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#64">
+                        <figure>
+                            <img src="./IMG/dianying15.jpg" alt="">
+                            <figcaption>
+                                <p>爱宠大机密</p>
+                                <i>9.0</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#65">
+                        <figure>
+                            <img src="./IMG/dianying16.jpg" alt="">
+                            <figcaption>
+                                <p>巴黎危机</p>
+                                <i>8.3</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li class="number number2">
+                    <a href="#66">
+                        <figure>
+                            <img src="./IMG/dianying17.jpg" alt="">
+                            <figcaption>
+                                <p>速度与激情</p>
+                                <i>暂无评分</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li class="number2">
+                    <a href="#67">
+                        <figure>
+                            <img src="./IMG/dianying18.jpg" alt="">
+                            <figcaption>
+                                <p>生化危机6：终章</p>
+                                <i>暂无评分</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#68">
+                        <figure>
+                            <img src="./IMG/dianying19.jpg" alt="">
+                            <figcaption>
+                                <p>釜山行</p>
+                                <i>9.0</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#69">
+                        <figure>
+                            <img src="./IMG/dianying20.jpg" alt="">
+                            <figcaption>
+                                <p>疯狂动物城</p>
+                                <i>9.5</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#70">
+                        <figure>
+                            <img src="./IMG/dianying21.jpg" alt="">
+                            <figcaption>
+                                <p>变形金刚5</p>
+                                <i>8.3</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li class="number2">
+                    <a href="#71">
+                        <figure>
+                            <img src="./IMG/dianying22.jpg" alt="">
+                            <figcaption>
+                                <p>速度与激情7</p>
+                                <i>9.6</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#72">
+                        <figure>
+                            <img src="./IMG/dianying23.jpg" alt="">
+                            <figcaption>
+                                <p>X战警：天启</p>
+                                <i>8.3</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li class="number">
+                    <a href="#73">
+                        <figure>
+                            <img src="./IMG/dianying24.jpg" alt="">
+                            <figcaption>
+                                <p>惊天魔盗团2</p>
+                                <i>8.3</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#74">
+                        <figure>
+                            <img src="./IMG/dianying25.jpg" alt="">
+                            <figcaption>
+                                <p>金刚狼3</p>
+                                <i>8.3</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#75">
+                        <figure>
+                            <img src="./IMG/dianying26.jpg" alt="">
+                            <figcaption>
+                                <p>北京遇上西雅图</p>
+                                <i>8.3</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li class="number2">
+                    <a href="#76">
+                        <figure>
+                            <img src="./IMG/dianying27.jpg" alt="">
+                            <figcaption>
+                                <p>夏有乔木 雅望天堂</p>
+                                <i>8.3</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#77">
+                        <figure>
+                            <img src="./IMG/dianying28.jpg" alt="">
+                            <figcaption>
+                                <p>奇幻森林</p>
+                                <i>8.3</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="#78">
+                        <figure>
+                            <img src="./IMG/dianying29.jpg" alt="">
+                            <figcaption>
+                                <p>危城</p>
+                                <i>8.3</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+                <li class="number2">
+                    <a href="#79">
+                        <figure>
+                            <img src="./IMG/dianying30.jpg" alt="">
+                            <figcaption>
+                                <p>封神传奇</p>
+                                <i>6.3</i>
+                            </figcaption>
+                        </figure>
+                    </a>
+                    
+                </li>
+            </ul>
+
+            <!-- 翻页 -->
+            <div class="next">
+                <a href="#51">1</a>
+                <a href="#52">2</a>
+                <a href="#53">3</a>
+                <a href="#54">4</a>
+                <a href="#55">5</a>
+                <a href="#56">...</a>
+                <a href="#57">23802</a>
+                <a href="#58">下一页</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页面底部 -->
+    <footer>
+        <p>©2016 猫眼电影 maoyan.com 京ICP证160733号 京ICP备16022489号-1 京公网安备 11010520230881号 网络文化经营许可证 电子公告服务规则</p>
+        <p>北京猫眼文化传媒有限公司</p>
+        <!-- 辅助功能 -->
+        <ul>
+            <li>
+                <img src="./IMG/iconfixed5.png" alt="">
+                <span>建议</span>
+            </li>
+            <li>
+                <img src="./IMG/iconfixed3.png" alt="">
+                <span>客服</span>
+            </li>
+            <li>
+                <img src="./IMG/iconfixed4.png" alt="">
+                <span> <a href="#">置顶</a> </span>
+            </li>
+        </ul>
+    </footer>
+    
+    
+</body>
+</html>

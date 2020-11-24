@@ -1,0 +1,144 @@
+.seating-state {
+    height: 140px;
+}
+
+.main-seating {
+    width: 1200px;
+    height: 669px;
+    margin: 0 auto;
+    border: 1px solid #e5e5e5;
+    display: flex;
+
+    .seating-list {
+        width: 820px;
+
+        .seat {
+            padding-top: 30px;
+            margin-bottom: 35px;
+            text-align: center;
+
+            span {
+                margin-right: 50px;
+            }
+
+            img {
+                width: 32px;
+                vertical-align: middle;
+            }
+        }
+
+        .list {
+            .screen {
+                div {
+                    height: 45px;
+                }
+
+                p {
+                    text-align: center;
+                }
+            }
+
+            .list-seat {
+                padding-top: 40px;
+                display: flex;
+
+                .list-num {
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 15px;
+                    margin-right: 40px;
+
+                    span {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+
+            .list-seat-group {
+                border: solid 1px red;
+                min-width: 600px;
+            }
+        }
+    }
+
+    .seating-movie {
+        flex: 1;
+        background-color: #f9f9f9;
+        box-sizing: border-box;
+        padding: 20px;
+
+        .movie-infor {
+            p {
+                font-weight: 700;
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            span {
+                color: #999;
+                font-weight: normal;
+            }
+
+            figure {
+                height: 166px;
+                display: flex;
+
+                figcaption {
+                    margin-left: 20px;
+
+                    p {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+        }
+
+        .select-seat {
+            height: 166px;
+            overflow: hidden;
+            border-top: 1px dashed #e5e5e5;
+            border-bottom: 1px dashed #e5e5e5;
+            font-size: 14px;
+
+            p {
+                padding-top: 20px;
+                color: #999;
+            }
+
+            .hint {
+                text-align: center;
+                padding: 35px 0 45px 0;
+            }
+
+            .sum {
+                span{
+                    font-weight: 700;
+                    color: #f03d37;
+                    font-size: 18px;
+                    &::before{
+                        content: "￥";
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+
+        .confirm{
+            .phone{
+                text-align: center;
+                padding: 23px 0 40px 0;
+            }
+            .confirm-btn{
+                display: block;
+                width: 260px;
+                height: 42px;
+                color: #fff;
+                line-height: 42px;
+                text-align: center;
+                background-color: #dedede;
+                border-radius: 21px;
+                margin: 0 auto;
+            }
+        }
+    }
+}

@@ -1,0 +1,240 @@
+@charset "UTF-8";
+/* 页面头部 */
+header ul li:nth-child(2) {
+  background-color: #ef4238;
+}
+
+header ul li:nth-child(2) a {
+  color: #fff;
+}
+
+header ul li:not(:nth-child(2)):hover a {
+  color: #ef4238;
+}
+
+/* 顶部导航 */
+.topNav {
+  background-color: #47464a;
+}
+
+.topNav ul {
+  margin: 0 auto;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 420px;
+}
+
+.topNav ul li {
+  width: 140px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: #999;
+}
+
+.topNav ul > i {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-color: #fff;
+  left: 65px;
+  bottom: -8px;
+  -webkit-transform: rotateZ(45deg);
+          transform: rotateZ(45deg);
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+main {
+  width: 1120px;
+  margin: 0 auto;
+}
+
+/* 筛选 条件 */
+.condition {
+  padding: 0 20px;
+  border: 1px solid #e5e5e5;
+  margin-top: 40px;
+}
+
+.condition > ul {
+  font-size: 14px;
+}
+
+.condition > ul li {
+  padding: 10px 0;
+  position: relative;
+}
+
+.condition > ul li div {
+  height: 24px;
+  line-height: 24px;
+  float: left;
+  color: #999;
+  font-size: 14px;
+}
+
+.condition > ul li > ul {
+  margin-left: 40px;
+  overflow: hidden;
+}
+
+.condition > ul li > ul > .first {
+  background-color: red;
+}
+
+.condition > ul li > ul > .first a {
+  color: #fff;
+}
+
+.condition > ul li > ul li {
+  padding: 3px 9px;
+  border-radius: 14px;
+  display: inline-block;
+  margin-left: 12px;
+}
+
+.condition > ul li > ul li:hover:not(:first-child) a {
+  color: red;
+}
+
+/* 电影网格 */
+.movieGird {
+  margin-top: 40px;
+  /* 排序 */
+  /* 网格 */
+  /* 翻页 */
+}
+
+.movieGird input {
+  display: none;
+}
+
+.movieGird #box1:checked ~ .order li:nth-of-type(1) i {
+  border-color: red;
+  border: 5px solid red;
+}
+
+.movieGird #box2:checked ~ .order li:nth-of-type(2) i {
+  border-color: red;
+  border: 5px solid red;
+}
+
+.movieGird #box3:checked ~ .order li:nth-of-type(3) i {
+  border-color: red;
+  border: 5px solid red;
+}
+
+.movieGird #box2:checked ~ .grid .number {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+.movieGird #box3:checked ~ .grid .number {
+  -webkit-box-ordinal-group: 0;
+      -ms-flex-order: -1;
+          order: -1;
+}
+
+.movieGird > div ul li {
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.movieGird > div ul li label {
+  margin-left: 30px;
+  margin-right: 20px;
+}
+
+.movieGird > div ul li i {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border: 5px solid #e5e5e5;
+  border-radius: 50%;
+  left: 0;
+  top: 2px;
+}
+
+.movieGird .grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 20px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.movieGird .grid li {
+  margin-bottom: 20px;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+.movieGird .grid li:hover {
+  -webkit-box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translate3d(0, -2px, 0);
+          transform: translate3d(0, -2px, 0);
+}
+
+.movieGird .grid li figure {
+  text-align: center;
+}
+
+.movieGird .grid li figure img {
+  border: 1px solid #e5e5e5;
+  margin-bottom: 20px;
+}
+
+.movieGird .grid li figure figcaption i {
+  font-size: 14px;
+  color: #ffb400;
+  margin: 25px 0;
+}
+
+.movieGird .next {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 434px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 25px auto 0;
+}
+
+.movieGird .next a {
+  display: inline-block;
+  padding: 8px 13px;
+  font-size: 12px;
+  border: 1px solid #d8d8d8;
+}
+
+.movieGird .next a:first-child {
+  color: #fff;
+  background-color: red;
+  border-color: red;
+}
+
+.movieGird .next a:hover:not(:first-child) {
+  color: #fff;
+  background-color: red;
+  border-color: red;
+}
+
+/* 页面底部 */
+footer {
+  margin-top: 95px;
+}
+/*# sourceMappingURL=movie.css.map */
